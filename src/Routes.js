@@ -6,12 +6,9 @@ import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import AppliedRoute from "./components/AppliedRoute";
 import Signup from "./containers/Signup";
-import NewConference from "./containers/NewConference";
-import ConferencesUpdate from "./containers/ConferencesUpdate";
-import Conferences from "./containers/Conferences";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
-import Participants from "./containers/Participants";
+
 
 export default ({ childProps }) =>
   <Switch>
