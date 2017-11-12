@@ -15,7 +15,7 @@ export default class Home extends Component {
 
     this.state = {
       isLoading: true,
-      conferences: [],
+      participants: [],
       search: '',
     };
   }
@@ -27,7 +27,7 @@ export default class Home extends Component {
 
     try {
       const results = await this.conferences();
-      this.setState({ conferences: results });
+      this.setState({ participants: results });
     } catch (e) {
       alert(e);
     }
@@ -36,29 +36,29 @@ export default class Home extends Component {
   }
 
   conferences() {
-    return invokeApig({ path: "/conferences" });
+    return invokeApig({ path: "/participants" });
   }
 
   searchList(event) {
     this.setState({search: event.target.value});
   }
 
-  renderConferencesList(conferences) {
-    return conferences.map(
-      (conference, i) =>
+  renderParticipantsList(participants) {
+    return participants.map(
+      (participant, i) =>
         i !== 0
           ? <ListGroupItem
-              key={conference.conferenceId}
-              href={`/conferences/${conference.conferenceId}`}
-              onClick={this.handleConferenceClick}
-              header={conference.confTitle}>
-                {"Created: " + new Date(conference.createdAt).toLocaleString()}
+              key={participant.participantId}
+              href={`/participants/${participant.participantId}`}
+              onClick={this.handleParticipantClick}
+              header={participant.parLastName}>
+                {"Created: " + new Date(participant.createdAt).toLocaleString()}
             </ListGroupItem>
           : null
     );
   }
 
-  handleConferenceClick = event => {
+  handleParticipantClick = event => {
     event.preventDefault();
     this.props.history.push(event.currentTarget.getAttribute("href"));
   }
@@ -80,39 +80,38 @@ export default class Home extends Component {
     );
   }
 
-  renderConferences(conferences) {
-    let filteredConferences = this.state.conferences.filter(
-      (conference) => {
-        return conference.confTitle.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+  renderParticipants(participants) {
+    let filteredParticipants = this.state.participants.filter(
+      (participant) => {
+        return participant.parLastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
     return (
-      <div className="conferences">
-        <PageHeader>Conferences and Groups</PageHeader>
+      <div className="participants">
+        <PageHeader>Participants</PageHeader>
         <Button
-          className="newconf"
+          className="newpar"
           key="new"
-          href="/conferences/new"
-          onClick={this.handleConferenceClick} >
-            <b>{"\uFF0B"}</b> Create a new conference
+          href="/participants/new"
+          onClick={this.handleParticipantClick} >
+            <b>{"\uFF0B"}</b> Create a new participant
         </Button>
         <input type="text"
           placeholder="Search list by name..."
           value={this.state.search}
           onChange={this.searchList.bind(this)} />
 
-        <ListGroup className="conference-list">
-          {!this.state.isLoading && this.renderConferencesList(filteredConferences)}
+        <ListGroup className="participant-list">
+          {!this.state.isLoading && this.renderParticipantsList(filteredParticipants)}
         </ListGroup>
       </div>
-
     );
   }
 
   render() {
     return (
       <div className="Home">
-        {this.props.isAuthenticated ? this.renderConferences() : this.renderLander()}
+        {this.props.isAuthenticated ? this.renderParticipants() : this.renderLander()}
       </div>
     );
   }
