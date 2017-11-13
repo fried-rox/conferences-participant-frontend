@@ -5,13 +5,13 @@ export default class SearchConferences extends Component {
     super(props);
 
     this.state= {
-      conferences: conferences
+      participants: participants
     };
   }
 
   render(){
     return(
-      console.log(conferences)
+      console.log(participants)
     )
   }
 }

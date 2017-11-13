@@ -74,14 +74,6 @@ class App extends Component {
                     </RouteNavItem>
                   ]}
             </Nav>
-            <Nav pullLeft>
-              {this.state.isAuthenticated
-                ? <RouteNavItem key={3} href="/">
-                    Conference List
-                  </RouteNavItem>
-                : []
-              }
-            </Nav>
           </Navbar.Collapse>
         </Navbar>
         <Routes childProps={childProps} />
