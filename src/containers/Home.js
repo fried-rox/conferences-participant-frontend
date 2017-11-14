@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { PageHeader, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 //import Search from 'react-search'
 
 import { invokeApig } from '../libs/awsLib';
@@ -15,8 +15,6 @@ export default class Home extends Component {
 
     this.state = {
       isLoading: true,
-      participants: [],
-      search: '',
     };
   }
 
@@ -26,8 +24,10 @@ export default class Home extends Component {
     }
 
     try {
-      const results = await this.conferences();
+      debugger;
+      const results = await this.participants();
       this.setState({ participants: results });
+      debugger;
     } catch (e) {
       alert(e);
     }
@@ -35,32 +35,8 @@ export default class Home extends Component {
     this.setState({ isLoading: false });
   }
 
-  conferences() {
-    return invokeApig({ path: "/participants" });
-  }
-
-  searchList(event) {
-    this.setState({search: event.target.value});
-  }
-
-  renderParticipantsList(participants) {
-    return participants.map(
-      (participant, i) =>
-        i !== 0
-          ? <ListGroupItem
-              key={participant.participantId}
-              href={`/participants/${participant.participantId}`}
-              onClick={this.handleParticipantClick}
-              header={participant.parLastName}>
-                {"Created: " + new Date(participant.createdAt).toLocaleString()}
-            </ListGroupItem>
-          : null
-    );
-  }
-
-  handleParticipantClick = event => {
-    event.preventDefault();
-    this.props.history.push(event.currentTarget.getAttribute("href"));
+  participants() {
+    return invokeApig({ path: `/participants/${this.props.match.params.id}` });
   }
 
   renderLander() {
@@ -79,30 +55,20 @@ export default class Home extends Component {
     );
   }
 
-  renderParticipants(participants) {
-    let filteredParticipants = this.state.participants.filter(
-      (participant) => {
-        return participant.parLastName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
-    );
-    return (
-      <div className="participants">
-        <PageHeader>Participants</PageHeader>
-        <Button
-          className="newpar"
-          key="new"
-          href="/participants/new"
-          onClick={this.handleParticipantClick} >
-            <b>{"\uFF0B"}</b> Create a new participant
-        </Button>
-        <input type="text"
-          placeholder="Search list by name..."
-          value={this.state.search}
-          onChange={this.searchList.bind(this)} />
+  handleParticipantClick = event => {
+    event.preventDefault();
+    this.props.history.push(event.currentTarget.getAttribute("href"));
+  }
 
-        <ListGroup className="participant-list">
-          {!this.state.isLoading && this.renderParticipantsList(filteredParticipants)}
-        </ListGroup>
+  renderParticipants() {
+    return (
+      <div>
+        <Button
+          className="profile"
+          href={`/participants/${this.props.match.params.id}`}
+          onClick={this.handleParticipantClick}>Profile</Button>
+        <Button className="regisration">Registration</Button>
+        <Button className="abstract">Abstract Submission</Button>
       </div>
     );
   }

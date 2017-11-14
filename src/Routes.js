@@ -9,13 +9,15 @@ import Signup from "./containers/Signup";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import CreateProfile from "./containers/CreateProfile";
+import Participant from "./containers/Participant";
 
 export default ({ childProps }) =>
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
     <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
     <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
-    <AuthenticatedRoute path="/createprofile" exact component={CreateProfile} props={childProps} />
+    <AuthenticatedRoute path="/participants/:id/createprofile" exact component={CreateProfile} props={childProps} />
+    <AuthenticatedRoute path="/participants/:id" exact component={Participant} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;
