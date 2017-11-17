@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+// import { CognitoUserAttribute } from "amazon-cognito-identity-js";
+
+// import Login from "./Login";
 //import Search from 'react-search'
 
-import { invokeApig } from '../libs/awsLib';
+// import { invokeApig } from '../libs/awsLib';
 
 import "./Home.css";
 
@@ -14,7 +17,7 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      isLoading: true,
+      isLoading: true
     };
   }
 
@@ -22,22 +25,27 @@ export default class Home extends Component {
     if (!this.props.isAuthenticated) {
       return;
     }
+    //
+    // const attributeGoersID = await Login.CognitoUserAttribute(goersID);
+    // if (attributeGoersID.Value === "") {
+    //   alert("Please relogin");
+    // } else {
+    //   console.log(attributeGoersID);
+    // }
+  };
+    // try {
+    //   const results = await this.participants();
+    //   this.setState({ participants: results });
+    // } catch (e) {
+    //   alert(e);
+    // }
+    //
+    // this.setState({ isLoading: false });
+  // }
 
-    try {
-      debugger;
-      const results = await this.participants();
-      this.setState({ participants: results });
-      debugger;
-    } catch (e) {
-      alert(e);
-    }
-
-    this.setState({ isLoading: false });
-  }
-
-  participants() {
-    return invokeApig({ path: `/participants/${this.props.match.params.id}` });
-  }
+  // participants() {
+  //   return invokeApig({ path: `/participants/${this.props.match.params.id}` });
+  // }
 
   renderLander() {
     return (
@@ -65,7 +73,7 @@ export default class Home extends Component {
       <div>
         <Button
           className="profile"
-          href={`/participants/${this.props.match.params.id}`}
+          href={`/participants/${this.props.attributeGoersID}`}
           onClick={this.handleParticipantClick}>Profile</Button>
         <Button className="regisration">Registration</Button>
         <Button className="abstract">Abstract Submission</Button>

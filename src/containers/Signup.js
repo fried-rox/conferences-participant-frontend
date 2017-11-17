@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
+import { AuthenticationDetails, CognitoUserPool, CognitoUserAttribute } from "amazon-cognito-identity-js";
+import uuid from "uuid";
 
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
@@ -15,6 +16,7 @@ export default class Signup extends Component {
       isLoading: false,
       email: "",
       password: "",
+      // participantId: "",
       confirmPassword: "",
       confirmationCode: "",
       newUser: null
@@ -77,14 +79,35 @@ export default class Signup extends Component {
     }
   }
 
-  signup(email, password) {
+  signup(email, password, sub) {
     const userPool = new CognitoUserPool({
       UserPoolId: config.cognito.USER_POOL_ID,
       ClientId: config.cognito.APP_CLIENT_ID
     });
 
+    const attributeList = [];
+
+    const dataEmail = {
+      Name: 'email',
+      Value: email
+    };
+
+    const dataGoersId = {
+      Name: 'custom:participant-id',
+      Value: uuid.v1()
+    };
+
+    const attributeEmail = new CognitoUserAttribute(dataEmail);
+    const attributeGoersID = new CognitoUserAttribute(dataGoersId);
+
+    attributeList.push(attributeEmail);
+    attributeList.push(attributeGoersID);
+
+    console.log(attributeList);
+    console.log(this.state.newUser);
+
     return new Promise((resolve, reject) =>
-      userPool.signUp(email, password, [], null, (err, result) => {
+      userPool.signUp(email, password, attributeList, null, (err, result) => {
         if (err) {
           reject(err);
           return;
