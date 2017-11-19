@@ -16,7 +16,6 @@ export default class Signup extends Component {
       isLoading: false,
       email: "",
       password: "",
-      // participantId: "",
       confirmPassword: "",
       confirmationCode: "",
       newUser: null
@@ -72,14 +71,15 @@ export default class Signup extends Component {
       );
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/createprofile");
+      debugger;
+      this.props.history.push(`/participants/${this.state.newUser.username}/createprofile`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
   }
 
-  signup(email, password, sub) {
+  signup(email, password) {
     const userPool = new CognitoUserPool({
       UserPoolId: config.cognito.USER_POOL_ID,
       ClientId: config.cognito.APP_CLIENT_ID
@@ -104,7 +104,6 @@ export default class Signup extends Component {
     attributeList.push(attributeGoersID);
 
     console.log(attributeList);
-    console.log(this.state.newUser);
 
     return new Promise((resolve, reject) =>
       userPool.signUp(email, password, attributeList, null, (err, result) => {

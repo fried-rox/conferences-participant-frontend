@@ -13,11 +13,11 @@ import Participant from "./containers/Participant";
 
 export default ({ childProps }) =>
   <Switch>
-    <AppliedRoute path="/participant/:custom:participant-id" exact component={Home} props={childProps} />
+    <AppliedRoute path="/" exact component={Home} props={childProps} />
     <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
     <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
     <AuthenticatedRoute path="/participants/:id/createprofile" exact component={CreateProfile} props={childProps} />
-    <AuthenticatedRoute path="/participants" exact component={Participant} props={childProps} />
+    <AuthenticatedRoute path="/participants/:id" exact component={Participant} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
   </Switch>;

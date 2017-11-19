@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-
+import Signup from "./Signup";
 // import Login from "./Login";
 //import Search from 'react-search'
 
@@ -65,15 +65,16 @@ export default class Home extends Component {
 
   handleParticipantClick = event => {
     event.preventDefault();
-    this.props.history.push(event.currentTarget.getAttribute("href"));
+    debugger;
+    this.props.history.push(`/participants/${Signup().newUser.username}`);
   }
+  //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)
 
   renderParticipants() {
     return (
       <div>
         <Button
           className="profile"
-          href={`/participants/${this.props.attributeGoersID}`}
           onClick={this.handleParticipantClick}>Profile</Button>
         <Button className="regisration">Registration</Button>
         <Button className="abstract">Abstract Submission</Button>

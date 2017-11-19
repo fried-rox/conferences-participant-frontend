@@ -1,0 +1,22 @@
+.NewPar {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 200px;
+  margin-right: 500px;
+}
+
+.NewPar {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 50px;
+  margin-right: 200px;
+}
+
+.NewPar form {
+  padding-bottom: 15px;
+}
+
+.NewPar form textarea {
+  height: 300px;
+  font-size: 24px;
+}

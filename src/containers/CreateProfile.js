@@ -5,6 +5,8 @@ import LoaderButton from "../components/LoaderButton";
 // import config from "../config";
 import { invokeApig } from "../libs/awsLib";
 
+import "./CreateProfile.css";
+
 export default class CreateProfile extends Component {
   constructor(props, context) {
     super(props, context);
