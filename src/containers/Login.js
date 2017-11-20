@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
-import decode from "jwt-decode";
+// import decode from "jwt-decode";
+import uuid from "uuid";
 
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
@@ -16,7 +17,12 @@ export default class Login extends Component {
       isLoading: false,
       email: "",
       password: "",
-      message: ""
+      message: "",
+      newUser: null,
+      dataGoersId: {
+        Name: "",
+        Value: null
+      }
     };
   }
 
@@ -36,15 +42,21 @@ export default class Login extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await this.login(this.state.email, this.state.password);
+      const newUser = await this.login(this.state.email, this.state.password);
+      debugger;
+      this.setState({
+        newUser: newUser
+      });
+      debugger;
       this.props.userHasAuthenticated(true);
+      this.props.history.push(`participant/${this.state.dataGoersId.Value}`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
   }
 
-  async login(email, password) {
+  login(email, password) {
     const userPool = new CognitoUserPool({
       UserPoolId: config.cognito.USER_POOL_ID,
       ClientId: config.cognito.APP_CLIENT_ID
@@ -53,27 +65,25 @@ export default class Login extends Component {
     const authenticationData = { Username: email, Password: password };
     const authenticationDetails = new AuthenticationDetails(authenticationData);
 
-    try{
-      const goersID = await decode(user.getIdToken().getJwtToken)["custom:participant-id"];
-      console.log(goersID);
-      const tokenExp = decode(user.accessToken.jwtToken)["exp"];
-      debugger;
-      const now = Math.round(new Date().getTime()/1000.0);
-
-      window.localStorage.setItem('value', goersID);
-      console.log(goersID);
-
-      if (now < tokenExp) {
-        this.props.history.push(`participant/${this.goersID}`);
-      } else {
-        this.setState({message: "Login session has expire, please login back in"})
-      }
-    }
-    catch(e){
-      this.setState({
-        message: e.message
-      });
-    }
+    const dataGoersId = {
+      Name: 'custom:participant-id',
+      Value: uuid.v1()
+    };
+    this.setState({
+      dataGoersId: dataGoersId
+    })
+    //const attributeGoersID = new CognitoUserAttribute(dataGoersId);
+    // const goersID = decode(dataGoersId.getIdToken().getJwtToken)["custom:participant-id"];
+    // const tokenExp = decode(dataGoersId.accessToken.jwtToken)["exp"];
+    // const now = Math.round(new Date().getTime()/1000.0);
+    //
+    // window.localStorage.setItem('value', goersID);
+    //
+    // if (now < tokenExp) {
+    //
+    // } else {
+    //   this.renderLander();
+    // }
 
     return new Promise((resolve, reject) =>
       user.authenticateUser(authenticationDetails, {
@@ -82,30 +92,6 @@ export default class Login extends Component {
       })
     );
   }
-
-  // async login() {
-  //   try{
-  //     const loggedIn = await this.loginCog();
-  //     const goersID = decode(loggedIn.getIdToken().getJwtToken)["custom:participant-id"];
-  //     const tokenExp = decode(loggedIn.accessToken.jwtToken)["exp"];
-  //     debugger;
-  //     const now = Math.round(new Date().getTime()/1000.0);
-  //
-  //     window.localStorage.setItem('value', goersID);
-  //     console.log(goersID);
-  //
-  //     if (now < tokenExp) {
-  //       this.props.history.push(`participant/${this.goersID}`);
-  //     } else {
-  //       this.setState({message: "Login session has expire, please login back in"})
-  //     }
-  //   }
-  //   catch(e){
-  //     this.setState({
-  //       message: e.message
-  //     });
-  //   }
-  // }
 
   render() {
     return (

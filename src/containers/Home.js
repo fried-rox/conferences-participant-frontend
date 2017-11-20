@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+// import decode from "jwt-decode";
 // import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-import Signup from "./Signup";
+// import Signup from "./Signup";
 // import Login from "./Login";
 //import Search from 'react-search'
 
@@ -65,8 +66,9 @@ export default class Home extends Component {
 
   handleParticipantClick = event => {
     event.preventDefault();
-    debugger;
-    this.props.history.push(`/participants/${Signup().newUser.username}`);
+    const path = window.location.pathname;
+    console.log(path);
+    this.props.history.push(path + "/viewprofile");
   }
   //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)
 

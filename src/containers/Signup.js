@@ -18,7 +18,11 @@ export default class Signup extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null
+      newUser: null,
+      dataGoersId: {
+        Name: "",
+        Value: null
+      }
     };
   }
 
@@ -72,7 +76,7 @@ export default class Signup extends Component {
 
       this.props.userHasAuthenticated(true);
       debugger;
-      this.props.history.push(`/participants/${this.state.newUser.username}/createprofile`);
+      this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -97,6 +101,10 @@ export default class Signup extends Component {
       Value: uuid.v1()
     };
 
+    this.setState({
+      dataGoersId: dataGoersId
+    })
+
     const attributeEmail = new CognitoUserAttribute(dataEmail);
     const attributeGoersID = new CognitoUserAttribute(dataGoersId);
 
@@ -111,7 +119,6 @@ export default class Signup extends Component {
           reject(err);
           return;
         }
-
         resolve(result.user);
       })
     );
