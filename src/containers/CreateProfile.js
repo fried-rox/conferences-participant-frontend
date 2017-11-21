@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel, PageHeader  } from "react-bootstrap";
 
 import LoaderButton from "../components/LoaderButton";
+// import Home from "./Home";
 // import config from "../config";
 import { invokeApig } from "../libs/awsLib";
 
@@ -15,6 +16,7 @@ export default class CreateProfile extends Component {
 
     this.state = {
       isLoading: false,
+      participantId: window.location.pathname.slice(13, 49),
       parTitle: "",
       parFirstName: "",
       parMiddleName: "",
@@ -51,13 +53,14 @@ export default class CreateProfile extends Component {
     });
   }
 
+
   handleSubmit = async event => {
     event.preventDefault();
-
     this.setState({ isLoading: true });
 
     try {
         const createParticipantObject = {
+          participantId: this.state.participantId,
           parTitle: this.state.parTitle === "" ? undefined : this.state.parTitle,
           parFirstName: this.state.parFirstName === "" ? undefined : this.state.parFirstName,
           parMiddleName: this.state.parMiddleName === "" ? undefined : this.state.parMiddleName,
@@ -86,7 +89,8 @@ export default class CreateProfile extends Component {
         console.log(createParticipantObject);
 
       await this.createParticipant(createParticipantObject);
-      this.props.history.push("/");
+      console.log(window.location.pathname.replace("createprofile", "viewprofile"));
+      this.props.history.push(window.location.pathname.replace("createprofile", "viewprofile"));
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

@@ -68,6 +68,8 @@ export default class Home extends Component {
     event.preventDefault();
     const path = window.location.pathname;
     console.log(path);
+    const id = path.slice(13, path.length);
+    console.log(id);
     this.props.history.push(path + "/viewprofile");
   }
   //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)

@@ -47,6 +47,7 @@ export default class Home extends Component {
 
     try {
       const results = await this.getParticipants();
+      debugger;
       this.setState({
         participant: results,
         parTitle: results.parTitle,
@@ -90,6 +91,7 @@ export default class Home extends Component {
 
   getParticipants() {
     return invokeApig({ path: `/participants/${this.props.match.params.id}` });
+    debugger;
   }
 
   handleParticipantClick = event => {
@@ -154,7 +156,7 @@ export default class Home extends Component {
                 </tr>
                 <tr>
                   <td>Workplace</td>
-                  <td> {this.state.parWork}, Department: {this.state.parWorkDepartment} </td>
+                  <td> {this.state.parWork} Department: {this.state.parWorkDepartment} </td>
                 </tr>
               </tbody>
             </Table>
