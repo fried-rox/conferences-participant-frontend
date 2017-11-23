@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel, PageHeader  } from "react-bootstrap";
 
 import LoaderButton from "../components/LoaderButton";
-// import Home from "./Home";
-// import config from "../config";
 import { invokeApig } from "../libs/awsLib";
 
-import "./CreateProfile.css";
+// import "./CreateProfile.css";
 
 export default class CreateProfile extends Component {
   constructor(props, context) {
@@ -16,7 +14,7 @@ export default class CreateProfile extends Component {
 
     this.state = {
       isLoading: false,
-      participantId: window.location.pathname.slice(13, 49),
+      participant: null,
       parTitle: "",
       parFirstName: "",
       parMiddleName: "",
@@ -41,6 +39,42 @@ export default class CreateProfile extends Component {
     };
   }
 
+  async componentDidMount() {
+    try {
+      const results = await this.getParticipant();
+      this.setState({
+        participant: results,
+        parTitle: results.parTitle,
+        parFirstName: results.parFirstName,
+        parMiddleName: results.parMiddleName,
+        parLastName: results.parLastName,
+        parGender: results.parGender,
+        parWork: results.parWork,
+        parWorkDepartment: results.parWorkDepartment,
+        parWorkStreet: results.parWorkStreet,
+        parWorkCity: results.parWorkCity,
+        parWorkresults: results.parWorkresults,
+        parWorkCountry: results.parWorkCountry,
+        parWorkZIP: results.parWorkZIP,
+        workPhoneCode: results.workPhoneCode,
+        workPhoneNumber: results.workPhoneNumber,
+        parPersonalStreet: results.parPersonalStreet,
+        parPersonalCity: results.parPersonalCity,
+        parPersonalresults: results.parPersonalresults,
+        parPersonalCountry: results.parPersonalCountry,
+        parPersonalZIP: results.parPersonalZIP,
+        mobilePhoneNumber: results.mobilePhoneNumber,
+        parNotes: results.parNotes,
+      });
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  getParticipant() {
+    return invokeApig({ path: `/participants/${this.props.match.params.id}` });
+  }
+
   validateForm() {
     return this.state.parFirstName.length > 0 && this.state.parLastName.length > 0;
   }
@@ -51,55 +85,49 @@ export default class CreateProfile extends Component {
     });
   }
 
+  saveParticipant(participant) {
+    return invokeApig({
+      path: `/conferences/${this.props.match.params.id}`,
+      method: "PUT",
+      body: participant
+    });
+  }
 
   handleSubmit = async event => {
+
     event.preventDefault();
+
     this.setState({ isLoading: true });
 
     try {
-        const createParticipantObject = {
-          participantId: this.state.participantId,
-          parTitle: this.state.parTitle === "" ? undefined : this.state.parTitle,
-          parFirstName: this.state.parFirstName === "" ? undefined : this.state.parFirstName,
-          parMiddleName: this.state.parMiddleName === "" ? undefined : this.state.parMiddleName,
-          parLastName: this.state.parLastName === "" ? undefined : this.state.parLastName,
-          parGender: this.state.parGender === "" ? undefined : this.state.parGender,
-          parWork: this.state.parWork === "" ? undefined : this.state.parWork,
-          parWorkDepartment: this.state.parWorkDepartment === "" ? undefined : this.state.parWorkDepartment,
-          parWorkStreet: this.state.parWorkStreet === "" ? undefined : this.state.parWorkStreet,
-          parWorkCity: this.state.parWorkCity === "" ? undefined : this.state.parWorkCity,
-          parWorkState: this.state.parWorkState === "" ? undefined : this.state.parWorkState,
-          parWorkCountry: this.state.parWorkCountry === "" ? undefined : this.state.parWorkCountry,
-          parWorkZIP: this.state.parWorkZIP === "" ? undefined : this.state.parWorkZIP,
-          workPhoneCode: this.state.workPhoneCode === "" ? undefined : this.state.workPhoneCode,
-          workPhoneNumber: this.state.workPhoneNumber === "" ? undefined : this.state.workPhoneNumber,
-          parPersonalStreet: this.state.parPersonalStreet === "" ? undefined : this.state.parPersonalStreet,
-          parPersonalCity: this.state.parPersonalCity === "" ? undefined : this.state.parPersonalCity,
-          parPersonalState: this.state.parPersonalState === "" ? undefined : this.state.parPersonalState,
-          parPersonalCountry: this.state.parPersonalCountry === "" ? undefined : this.state.parPersonalCountry,
-          parPersonalZIP: this.state.parPersonalZIP === "" ? undefined : this.state.parPersonalZIP,
-          mobilePhoneNumber: this.state.mobilePhoneNumber === "" ? undefined : this.state.mobilePhoneNumber,
-          parNotes: this.state.parNotes === "" ? undefined : this.state.parNotes,
-        }
-
-        console.log(createParticipantObject);
-
-      await this.createParticipant(createParticipantObject);
-      const path = window.location.pathname.replace("createprofile", "viewprofile");
-      console.log(path);
-      this.props.history.push(path);
+      await this.saveParticipant({
+        ...this.state.participant,
+        parTitle: this.state.parTitle,
+        parFirstName: this.state.parFirstName,
+        parMiddleName: this.state.parMiddleName,
+        parLastName: this.state.parLastName,
+        parGender: this.state.parGender,
+        parWork: this.state.parWork,
+        parWorkDepartment: this.state.parWorkDepartment,
+        parWorkStreet: this.state.parWorkStreet,
+        parWorkCity: this.state.parWorkCity,
+        parWorkresults: this.state.parWorkresults,
+        parWorkCountry: this.state.parWorkCountry,
+        parWorkZIP: this.state.parWorkZIP,
+        workPhoneCode: this.state.workPhoneCode,
+        workPhoneNumber: this.state.workPhoneNumber,
+        parPersonalStreet: this.state.parPersonalStreet,
+        parPersonalCity: this.state.parPersonalCity,
+        parPersonalresults: this.state.parPersonalresults,
+        parPersonalCountry: this.state.parPersonalCountry,
+        parPersonalZIP: this.state.parPersonalZIP,
+        mobilePhoneNumber: this.state.mobilePhoneNumber,
+        parNotes: this.state.parNotes,
+      });
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
-  }
-
-  createParticipant(participant) {
-    return invokeApig({
-      path: "/participants",
-      method: "POST",
-      body: participant
-    });
   }
 
   render() {

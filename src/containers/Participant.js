@@ -6,6 +6,7 @@ import { Button, Table } from "react-bootstrap";
 import { invokeApig } from '../libs/awsLib';
 
 //import SearchNotes from "../components/SearchNotes";
+import "./Participant.css";
 
 export default class Home extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ export default class Home extends Component {
       parFirstName: "",
       parMiddleName: "",
       parLastName: "",
-      parSuffix: "",
       parGender: "",
       parWork: "",
       parWorkDepartment: "",
@@ -34,7 +34,6 @@ export default class Home extends Component {
       parPersonalState: "",
       parPersonalCountry: "",
       parPersonalZIP: "",
-      mobilePhoneCode: "",
       mobilePhoneNumber: "",
       parNotes: "",
       };
@@ -47,14 +46,12 @@ export default class Home extends Component {
 
     try {
       const results = await this.getParticipants();
-      debugger;
       this.setState({
         participant: results,
         parTitle: results.parTitle,
         parFirstName: results.parFirstName,
         parMiddleName: results.parMiddleName,
         parLastName: results.parLastName,
-        parSuffix: results.parSuffix,
         parGender: results.parGender,
         parWork: results.parWork,
         parWorkDepartment: results.parWorkDepartment,
@@ -70,7 +67,6 @@ export default class Home extends Component {
         parPersonalresults: results.parPersonalresults,
         parPersonalCountry: results.parPersonalCountry,
         parPersonalZIP: results.parPersonalZIP,
-        mobilePhoneCode: results.mobilePhoneCode,
         mobilePhoneNumber: results.mobilePhoneNumber,
         parNotes: results.parNotes,
       });
@@ -91,7 +87,6 @@ export default class Home extends Component {
 
   getParticipants() {
     return invokeApig({ path: `/participants/${this.props.match.params.id}` });
-    debugger;
   }
 
   handleParticipantClick = event => {
@@ -123,6 +118,7 @@ export default class Home extends Component {
           <Button
             className="update"
             key={this.state.participantId}
+            href={`/participants/${this.props.match.params.id}/updateprofile`}
             onClick={this.handleParticipantClick} >
               <b>{"\uFF0B"}</b> Edit
           </Button>
@@ -145,10 +141,6 @@ export default class Home extends Component {
                 <tr>
                   <td>Last Name</td>
                   <td> {this.state.parLastName} </td>
-                </tr>
-                <tr>
-                  <td>Suffix</td>
-                  <td> {this.state.parSuffix} </td>
                 </tr>
                 <tr>
                   <td>Gender</td>
@@ -175,7 +167,7 @@ export default class Home extends Component {
                 </tr>
                 <tr>
                   <td>Moobile Number</td>
-                  <td> {this.state.mobilePhoneCode} - {this.state.mobilePhoneNumber} </td>
+                  <td> {this.state.mobilePhoneNumber} </td>
                 </tr>
               </tbody>
             </Table>

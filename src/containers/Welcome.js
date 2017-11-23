@@ -7,9 +7,9 @@ import { Button } from "react-bootstrap";
 // import Login from "./Login";
 //import Search from 'react-search'
 
-import { invokeApig } from '../libs/awsLib';
+// import { invokeApig } from '../libs/awsLib';
 
-import "./Home.css";
+import "./Welcome.css";
 
 //import SearchNotes from "../components/SearchNotes";
 
@@ -18,8 +18,7 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      isLoading: true,
-      participant: []
+      isLoading: true
     };
   }
 
@@ -27,19 +26,27 @@ export default class Home extends Component {
     if (!this.props.isAuthenticated) {
       return;
     }
-    try {
-      const results = await this.participant();
-      this.setState({ participant: results });
-    } catch (e) {
-      alert(e);
-    }
-
-    this.setState({ isLoading: false });
+    //
+    // const attributeGoersID = await Login.CognitoUserAttribute(goersID);
+    // if (attributeGoersID.Value === "") {
+    //   alert("Please relogin");
+    // } else {
+    //   console.log(attributeGoersID);
+    // }
   }
+    // try {
+    //   const results = await this.participants();
+    //   this.setState({ participants: results });
+    // } catch (e) {
+    //   alert(e);
+    // }
+    //
+    // this.setState({ isLoading: false });
+  // }
 
-  participant() {
-    return invokeApig({ path: "/participants" });
-  }
+  // participants() {
+  //   return invokeApig({ path: `/participants/${this.props.match.params.id}` });
+  // }
 
   renderLander() {
     return (
@@ -59,14 +66,13 @@ export default class Home extends Component {
 
   handleParticipantClick = event => {
     event.preventDefault();
-    // const path = window.location.pathname;
-    // console.log(path);
-    // const id = path.slice(13, path.length);
-    // console.log(id);
-    this.props.history.push("/viewprofile");
+    const path = window.location.pathname;
+    console.log(path);
+    const id = path.slice(13, path.length);
+    console.log(id);
+    this.props.history.push(path + "/viewprofile");
   }
   //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)
-
 
   renderParticipants() {
     return (

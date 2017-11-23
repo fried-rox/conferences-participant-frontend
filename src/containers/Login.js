@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 // import decode from "jwt-decode";
-import uuid from "uuid";
+// import uuid from "uuid";
 
+// import { createParticipantObject } from "./CreateProfile";
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
+import { invokeApig } from '../libs/awsLib';
 
 import "./Login.css";
 
@@ -19,10 +21,11 @@ export default class Login extends Component {
       password: "",
       message: "",
       newUser: null,
-      dataGoersId: {
-        Name: "",
-        Value: null
-      }
+      participant: []
+      // dataGoersId: {
+      //   Name: "",
+      //   Value: null
+      // }
     };
   }
 
@@ -43,13 +46,20 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
-      debugger;
       this.setState({
         newUser: newUser
       });
-      debugger;
+
+      try {
+        const results = await this.participant();
+        this.setState({
+          participant: results
+        });
+      } catch (e) {
+        alert(e);
+      }
       this.props.userHasAuthenticated(true);
-      this.props.history.push(`participant/${this.state.dataGoersId.Value}`);
+      this.props.history.push(`/participant/${this.state.participant[0].participantId}/viewprofile`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -65,13 +75,13 @@ export default class Login extends Component {
     const authenticationData = { Username: email, Password: password };
     const authenticationDetails = new AuthenticationDetails(authenticationData);
 
-    const dataGoersId = {
-      Name: 'custom:participant-id',
-      Value: uuid.v1()
-    };
-    this.setState({
-      dataGoersId: dataGoersId
-    })
+    // const dataGoersId = {
+    //   Name: 'custom:participant-id',
+    //   Value: uuid.v1()
+    // };
+    // this.setState({
+    //   dataGoersId: dataGoersId
+    // })
     //const attributeGoersID = new CognitoUserAttribute(dataGoersId);
     // const goersID = decode(dataGoersId.getIdToken().getJwtToken)["custom:participant-id"];
     // const tokenExp = decode(dataGoersId.accessToken.jwtToken)["exp"];
@@ -91,6 +101,10 @@ export default class Login extends Component {
         onFailure: err => reject(err)
       })
     );
+  }
+
+  participant() {
+    return invokeApig({ path: "/participants" });
   }
 
   render() {

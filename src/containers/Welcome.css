@@ -1,0 +1,37 @@
+.Welcome .lander {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.Welcome .lander h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+
+.Welcome .lander p {
+  color: #999;
+}
+
+.Welcome .lander div {
+  padding-top: 20px;
+}
+
+.Welcome .lander div a:first-child {
+  margin-right: 20px;
+}
+
+
+.Welcome .newconf {
+  float: right;
+}
+
+.Welcome {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 50px;
+  margin-right: 200px;
+}
+
+.conference-list {
+  margin-top:3%;
+}

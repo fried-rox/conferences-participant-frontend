@@ -75,7 +75,6 @@ export default class Signup extends Component {
       );
 
       this.props.userHasAuthenticated(true);
-      debugger;
       this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
     } catch (e) {
       alert(e);
