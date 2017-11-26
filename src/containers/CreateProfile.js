@@ -188,7 +188,7 @@ export default class CreateProfile extends Component {
               value={this.state.parWorkState}
               type="text"/>
           </FormGroup>
-          <FormGroup>
+          <FormGroup controlId="parWorkCountry">
             <ControlLabel>Country</ControlLabel>
             <FormControl
               onChange={this.handleChange}
@@ -246,16 +246,19 @@ export default class CreateProfile extends Component {
               value={this.state.parPersonalState}
               type="text"/>
           </FormGroup>
-          <FormControl
-            onChange={this.handleChange}
-            value={this.state.parPersonalCountry}
-            componentClass="select">
-              <option value="Israel">Mr</option>
-              <option value="South Africa">Mrs</option>
-              <option value="England">Ms</option>
-              <option value="China">Prof</option>
-              <option value="India">Dr</option>
-          </FormControl>
+          <FormGroup controlId="parPersonalCountry">
+            <ControlLabel>Country</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalCountry}
+              componentClass="select">
+                <option value="Israel">Israel</option>
+                <option value="South Africa">South Africa</option>
+                <option value="England">England</option>
+                <option value="China">China</option>
+                <option value="India">India</option>
+            </FormControl>
+          </FormGroup>
           <FormGroup controlId="parPersonalZIP">
             <ControlLabel>ZIP</ControlLabel>
             <FormControl

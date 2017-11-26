@@ -187,6 +187,7 @@ export default class Signup extends Component {
             value={this.state.email}
             onChange={this.handleChange}
           />
+          <HelpBlock>Please use a valid email address.</HelpBlock>
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
@@ -195,6 +196,7 @@ export default class Signup extends Component {
             onChange={this.handleChange}
             type="password"
           />
+          <HelpBlock>Your password must be at least 8 characters long. It must include at least 1 number, 1 special character and 1 upper case letter.</HelpBlock>
         </FormGroup>
         <FormGroup controlId="confirmPassword" bsSize="large">
           <ControlLabel>Confirm Password</ControlLabel>
