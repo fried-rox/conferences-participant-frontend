@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
 //import Search from 'react-search'
 
@@ -94,23 +93,7 @@ export default class Home extends Component {
     this.props.history.push(event.currentTarget.getAttribute("href"));
   }
 
-  renderLander() {
-    return (
-      <div className="lander">
-        <h1>Conference Title</h1>
-        <div>
-          <Link to="/login" className="btn btn-info btn-lg">
-            Login
-          </Link>
-          <Link to="/signup" className="btn btn-success btn-lg">
-            Signup
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  renderParticipants() {
+  render() {
     return (
       <div>
         <div className="Participant">
@@ -118,7 +101,7 @@ export default class Home extends Component {
           <Button
             className="update"
             key={this.state.participantId}
-            href={`/participants/${this.props.match.params.id}/updateprofile`}
+            href={`/participant/${this.props.match.params.id}/updateprofile`}
             onClick={this.handleParticipantClick} >
               <b>{"\uFF0B"}</b> Edit
           </Button>
@@ -173,14 +156,6 @@ export default class Home extends Component {
             </Table>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div className="Home">
-        {this.props.isAuthenticated ? this.renderParticipants() : this.renderLander()}
       </div>
     );
   }

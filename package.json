@@ -26,5 +26,13 @@
   "description": "Front end for Target Conference Goers",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roxy-target/target-conferences-front.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roxy-target/target-conferences-front/issues"
+  },
+  "homepage": "https://github.com/roxy-target/target-conferences-front#readme"
 }
