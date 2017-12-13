@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Welcome from "./containers/Welcome";
+import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import AppliedRoute from "./components/AppliedRoute";
@@ -14,6 +15,7 @@ import UpdateProfile from "./containers/UpdateProfile";
 
 export default ({ childProps }) =>
   <Switch>
+    <AppliedRoute path="/" exact component={Home} props={childProps} />
     <AppliedRoute path="/participant/:id" exact component={Welcome} props={childProps} />
     <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
     <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />

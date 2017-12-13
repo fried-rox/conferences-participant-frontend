@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, HelpBlock } from "react-bootstrap";
 //import Search from 'react-search'
 
 import { invokeApig } from '../libs/awsLib';
@@ -115,6 +115,7 @@ export default class Home extends Component {
       <div>
         <div className="Participant">
           <h2> Participant Information </h2>
+          <HelpBlock>Please check your details and if anything has changed please ammend them by clicking the Edit button.</HelpBlock>
           <Button
             className="update"
             key={this.state.participantId}

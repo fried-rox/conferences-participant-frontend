@@ -1,13 +1,6 @@
 .Participant {
   margin-top: 15px;
   margin-bottom: 15px;
-  margin-left: 200px;
-  margin-right: 500px;
-}
-
-.Participant {
-  margin-top: 15px;
-  margin-bottom: 15px;
   margin-left: 50px;
   margin-right: 200px;
 }
@@ -19,4 +12,19 @@
 .Participant form textarea {
   height: 300px;
   font-size: 24px;
+}
+
+.Participant .update {
+  float: right;
+  margin-bottom: 10px;
+  width: 100px;
+  padding: 4px 10px 6px 10px;
+  box-shadow: 1px 1px 0 0 #999;
+  letter-spacing: 0.5px;
+  color: #fff;
+  height: 30px;
+  font-size: 14px;
+  background-color: #3f99a1;
+  border-color: #3f99a1;
+  border-radius: 4px 4px 4px 4px;
 }

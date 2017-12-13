@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -55,19 +55,21 @@ class App extends Component {
         <Navbar collapseOnSelect className="Navbar-container">
           <Navbar.Header>
             <Navbar.Brand>
-              <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
+              <Link to="/">
+                <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
                 : [
-                    <RouteNavItem key={1} href="/signup">
+                    <RouteNavItem id="signuplink" key={1} href="/signup">
                       Signup
                     </RouteNavItem>,
-                    <RouteNavItem key={2} href="/login">
+                    <RouteNavItem id="loginlink" key={2} href="/login">
                       Login
                     </RouteNavItem>
                   ]}

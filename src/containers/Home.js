@@ -46,11 +46,11 @@ export default class Home extends Component {
       <div className="lander">
         <h1>Conference Title</h1>
         <div>
-          <Link to="/login" className="btn btn-info btn-lg">
-            Login
-          </Link>
-          <Link to="/signup" className="btn btn-success btn-lg">
+          <Link to="/signup" id="signupbtn">
             Signup
+          </Link>
+          <Link to="/login" id="loginbtn">
+            Login
           </Link>
         </div>
       </div>
@@ -59,14 +59,13 @@ export default class Home extends Component {
 
   handleParticipantClick = event => {
     event.preventDefault();
-    // const path = window.location.pathname;
-    // console.log(path);
-    // const id = path.slice(13, path.length);
-    // console.log(id);
-    this.props.history.push("/viewprofile");
+    const path = window.location.pathname;
+    console.log(path);
+    const id = path.slice(13, path.length);
+    console.log(id);
+    this.props.history.push(path + "/viewprofile");
   }
   //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)
-
 
   renderParticipants() {
     return (
