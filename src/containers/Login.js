@@ -60,12 +60,10 @@ export default class Login extends Component {
         alert(e);
       }
       this.props.userHasAuthenticated(true);
-      debugger;
       if (this.state.participant.length === 0) {
-        debugger;
         this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
       } else {
-        this.props.history.push(`/participant/${this.state.participant[0].participantId}/viewprofile`);
+        this.props.history.push(`/participant/${this.state.participant[0].participantId}`);
       }
     } catch (e) {
       alert(e);
