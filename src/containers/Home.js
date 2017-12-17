@@ -41,10 +41,18 @@ export default class Home extends Component {
     return invokeApig({ path: "/participants" });
   }
 
+  confTitle() {
+    debugger;
+    const confId = sessionStorage.getItem("conferenceId");
+    const confId2 = localStorage.getItem("conferenceId");
+    return confId && confId2;
+  }
+
   renderLander() {
     return (
       <div className="lander">
         <h1>Conference Title</h1>
+        <p> {this.confTitle()} </p>
         <div>
           <Link to="/signup" id="signupbtn">
             Signup
