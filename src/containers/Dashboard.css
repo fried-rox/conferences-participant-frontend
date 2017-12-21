@@ -1,29 +1,87 @@
 .Dashboard {
-  padding: 80px 0;
-  text-align: center;
-  float: left;
-  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 50px;
+  margin-right: 200px;
+  position: normal;
+}
+
+.Dashboard h2 {
+  width: 275px;
+  display: inline-block !important;
 }
 
 .Dashboard .profile {
-  float: left;
-  position: absolute;
-  border-width: 2px;
-  border-color: #3f99a1;
+  margin: 50px;
+  width: 700px;
+  height: 100%;
+  letter-spacing: 0.5px;
+  display: inline-block !important;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 4px;
+  color: #000000;
+  font-weight: 500;
+  /* background-color: #fff; */
+  border-color: #fbb031;
+  text-align: left;
+  border-width: thin;
+  border-style: solid;
+  padding: 0px 30px;
 }
 
 .Dashboard .registration {
-  float: right;
-  position: relative;
-  display: flex;
-  border-radius: 2px;
-  border-color: #3f99a1;
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 20px;
+  width: 525px;
+  height: 225px;
+  letter-spacing: 0.5px;
+  display: inline-block !important;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 4px;
+  color: #000000;
+  font-weight: 500;
+  /* background-color: #fff; */
+  border-color: #fbb031;
+  text-align: left;
+  border-width: thin;
+  border-style: solid;
+  padding: 0px 30px;
 }
 
 .Dashboard .abstract {
+  position: absolute;
+  margin-top: 325px;
+  margin-left: 20px;
+  width: 525px;
+  height: 225px;
+  letter-spacing: 0.5px;
+  display: inline-block !important;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 4px;
+  color: #000000;
+  font-weight: 500;
+  /* background-color: #fff; */
+  border-color: #fbb031;
+  text-align: left;
+  border-width: thin;
+  border-style: solid;
+  padding: 0px 30px;
+}
+
+.Dashboard #profile, #registration, #abstract {
   float: right;
-  position: relative;
-  display: flex;
-  border-radius: 2px;
+  margin-top: 20px;
+  display: inline-block !important;
+  box-shadow: 1px 1px 0 0 #fbb031;
+  letter-spacing: 0.5px;
+  color: #fff;
+  height: 30px;
+  font-size: 14px;
+  background-color: #3f99a1;
   border-color: #3f99a1;
+  border-radius: 4px 4px 4px 4px;
 }

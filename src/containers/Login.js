@@ -46,7 +46,6 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
-      debugger;
       this.setState({
         newUser: newUser
       });

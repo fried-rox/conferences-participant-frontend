@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -55,9 +55,7 @@ class App extends Component {
         <Navbar collapseOnSelect className="Navbar-container">
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">
-                <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
-              </Link>
+              <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
