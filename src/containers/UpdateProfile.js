@@ -3,6 +3,7 @@ import { FormGroup, FormControl, ControlLabel, PageHeader  } from "react-bootstr
 
 import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from "../libs/awsLib";
+import Navigationbar from "./Navigationbar";
 
 import "./UpdateProfile.css";
 
@@ -133,6 +134,8 @@ export default class UpdateProfile extends Component {
   render() {
     return (
       <div className="UpdateProfile">
+
+        <Navigationbar id="navbar" {...this.props} />
 
         <PageHeader>
           Profile Details

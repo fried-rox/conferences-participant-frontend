@@ -72,6 +72,14 @@ class App extends Component {
                     </RouteNavItem>
                   ]}
             </Nav>
+            <Nav pullLeft>
+              {this.state.isAuthenticated
+                ? <RouteNavItem id="dashboard" key={3} href={`/participant/${this.props.match.params.id}`}>
+                    Dashboard
+                  </RouteNavItem>
+                : []
+              }
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
         <Routes childProps={childProps} />

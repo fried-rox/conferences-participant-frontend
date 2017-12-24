@@ -96,7 +96,7 @@ export default class Dashboard extends Component {
         <div className="profile">
           <Button id="profile" onClick={this.handleParticipantClick}>Update Profile</Button>
           <h2>Personal Details</h2>
-          <HelpBlock>Please check your details and if anything has changed please ammend them by clicking the Update Profile button.</HelpBlock>
+          <HelpBlock>Please check your details and if anything has changed please ammend them by clicking the <i>Update Profile</i> button.</HelpBlock>
           <div>
             <Table responsive>
               <tbody>
@@ -150,12 +150,14 @@ export default class Dashboard extends Component {
 
         <div className="registration">
           <h2>Registration</h2>
-          <Button id="registration">Register</Button>
+          <Button id="registration">Register!</Button>
+          <HelpBlock>To register for the conference please click the Register button</HelpBlock>
         </div>
 
         <div className="abstract">
           <h2>Scientific</h2>
           <Button id="abstract">Submit an Abstract</Button>
+          <HelpBlock>To submit an abstract for review please click the Submit an Abstract button</HelpBlock>
         </div>
 
       </div>
