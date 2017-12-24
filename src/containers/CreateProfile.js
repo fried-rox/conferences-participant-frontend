@@ -54,7 +54,6 @@ export default class CreateProfile extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    this.setState({ isLoading: true });
 
     try {
         const createParticipantObject = {
@@ -281,6 +280,7 @@ export default class CreateProfile extends Component {
               componentClass="textarea"/>
           </FormGroup>
           <LoaderButton
+            className="create-button"
             block
             bsStyle="primary"
             bsSize="large"

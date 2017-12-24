@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-// import decode from "jwt-decode";
-// import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-// import Signup from "./Signup";
-// import Login from "./Login";
-//import Search from 'react-search'
+import { Button, Table, HelpBlock } from "react-bootstrap";
 
 import { invokeApig } from '../libs/awsLib';
 
 import "./Home.css";
-
-//import SearchNotes from "../components/SearchNotes";
 
 export default class Home extends Component {
   constructor(props) {
@@ -19,7 +12,28 @@ export default class Home extends Component {
 
     this.state = {
       isLoading: true,
-      participant: []
+      participant: [],
+      parTitle: "",
+      parFirstName: "",
+      parMiddleName: "",
+      parLastName: "",
+      parGender: "",
+      parWork: "",
+      parWorkDepartment: "",
+      parWorkStreet: "",
+      parWorkCity: "",
+      parWorkState: "",
+      parWorkCountry: "",
+      parWorkZIP: "",
+      workPhoneCode: "",
+      workPhoneNumber: "",
+      parPersonalStreet: "",
+      parPersonalCity: "",
+      parPersonalState: "",
+      parPersonalCountry: "",
+      parPersonalZIP: "",
+      mobilePhoneNumber: "",
+      parNotes: ""
     };
   }
 
@@ -29,7 +43,32 @@ export default class Home extends Component {
     }
     try {
       const results = await this.participant();
-      this.setState({ participant: results });
+      debugger;
+      this.setState({
+        participant: results,
+        parTitle: results[0].parTitle,
+        parFirstName: results[0].parFirstName,
+        parMiddleName: results[0].parMiddleName,
+        parLastName: results[0].parLastName,
+        parGender: results[0].parGender,
+        parWork: results[0].parWork,
+        parWorkDepartment: results[0].parWorkDepartment,
+        parWorkStreet: results[0].parWorkStreet,
+        parWorkCity: results[0].parWorkCity,
+        parWorkresults: results[0].parWorkresults,
+        parWorkCountry: results[0].parWorkCountry,
+        parWorkZIP: results[0].parWorkZIP,
+        workPhoneCode: results[0].workPhoneCode,
+        workPhoneNumber: results[0].workPhoneNumber,
+        parPersonalStreet: results[0].parPersonalStreet,
+        parPersonalCity: results[0].parPersonalCity,
+        parPersonalresults: results[0].parPersonalresults,
+        parPersonalCountry: results[0].parPersonalCountry,
+        parPersonalZIP: results[0].parPersonalZIP,
+        mobilePhoneNumber: results[0].mobilePhoneNumber,
+        parNotes: results[0].parNotes
+      });
+      debugger;
     } catch (e) {
       alert(e);
     }
@@ -39,43 +78,101 @@ export default class Home extends Component {
 
   participant() {
     return invokeApig({ path: "/participants" });
+    //path: `/participants/${this.props.match.params.id}`
+  }
+
+  handleParticipantClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/updateprofile`);
   }
 
   renderLander() {
     return (
       <div className="lander">
-        <h1>Conference Title</h1>
+        <h1> Conference Title </h1>
         <div>
-          <Link to="/login" className="btn btn-info btn-lg">
-            Login
-          </Link>
-          <Link to="/signup" className="btn btn-success btn-lg">
+          <Link to="/signup" id="signupbtn">
             Signup
+          </Link>
+          <Link to="/login" id="loginbtn">
+            Login
           </Link>
         </div>
       </div>
     );
   }
 
-  handleParticipantClick = event => {
-    event.preventDefault();
-    // const path = window.location.pathname;
-    // console.log(path);
-    // const id = path.slice(13, path.length);
-    // console.log(id);
-    this.props.history.push("/viewprofile");
-  }
-  //event.currentTarget.getAttribute(`/participants/${this.state.newUser.username}`)
-
-
-  renderParticipants() {
+  renderDashboard() {
     return (
-      <div>
-        <Button
-          className="profile"
-          onClick={this.handleParticipantClick}>Profile</Button>
-        <Button className="regisration">Registration</Button>
-        <Button className="abstract">Abstract Submission</Button>
+      <div className="Dashboard">
+
+        <div className="profile">
+          <Button id="profile" onClick={this.handleParticipantClick}>Update Profile</Button>
+          <h2>Personal Details</h2>
+          <HelpBlock>Please check your details and if anything has changed please ammend them by clicking the <b>Update Profile</b> button.</HelpBlock>
+          <div>
+            <Table responsive>
+              <tbody>
+                <tr>
+                  <td>Title</td>
+                  <td> {this.state.parTitle} </td>
+                </tr>
+                <tr>
+                  <td>First Name</td>
+                  <td> {this.state.parFirstName} </td>
+                </tr>
+                <tr>
+                  <td>Middle Name</td>
+                  <td> {this.state.parMiddleName} </td>
+                </tr>
+                <tr>
+                  <td>Last Name</td>
+                  <td> {this.state.parLastName} </td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td> {this.state.parGender} </td>
+                </tr>
+                <tr>
+                  <td>Workplace</td>
+                  <td> {this.state.parWork} Department {this.state.parWorkDepartment} </td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+          <h3>Contact details</h3>
+          <div>
+            <Table responsive>
+              <tbody>
+                <tr>
+                  <td>Work Address</td>
+                  <td>{this.state.parWorkStreet}</td>
+                </tr>
+                <tr>
+                  <td>Work Number</td>
+                  <td> {this.state.workPhoneCode} - {this.state.workPhoneNumber} </td>
+                </tr>
+                <tr>
+                  <td>Mobile Number</td>
+                  <td> {this.state.mobilePhoneNumber} </td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        </div>
+
+        <div className="registration">
+          <h2>Registration</h2>
+          <Button id="registration">Register</Button>
+          <HelpBlock>To register for the conference please click the <b>Register</b> button</HelpBlock>
+        </div>
+
+        <div className="abstract">
+          <h2>Scientific</h2>
+          <Button id="abstract">Submit an Abstract</Button>
+          <HelpBlock>To submit an abstract for review please click the <b>Submit an Abstract</b> button</HelpBlock>
+        </div>
+
       </div>
     );
   }
@@ -83,7 +180,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        {this.props.isAuthenticated ? this.renderParticipants() : this.renderLander()}
+        {this.props.isAuthenticated ? this.renderDashboard() : this.renderLander() }
       </div>
     );
   }

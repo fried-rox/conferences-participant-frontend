@@ -46,7 +46,6 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
-      debugger;
       this.setState({
         newUser: newUser
       });
@@ -60,9 +59,7 @@ export default class Login extends Component {
         alert(e);
       }
       this.props.userHasAuthenticated(true);
-      debugger;
       if (this.state.participant.length === 0) {
-        debugger;
         this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
       } else {
         this.props.history.push(`/participant/${this.state.participant[0].participantId}`);
@@ -117,7 +114,9 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
+      <div className="LogIn">
+        <h1>Conference Title</h1>
+        <p>Target Conferences Ltd</p>
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>

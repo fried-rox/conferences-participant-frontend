@@ -62,15 +62,23 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
                 : [
-                    <RouteNavItem key={1} href="/signup">
+                    <RouteNavItem id="signuplink" key={1} href="/signup">
                       Signup
                     </RouteNavItem>,
-                    <RouteNavItem key={2} href="/login">
+                    <RouteNavItem id="loginlink" key={2} href="/login">
                       Login
                     </RouteNavItem>
                   ]}
+            </Nav>
+            <Nav pullLeft>
+              {this.state.isAuthenticated
+                ? <RouteNavItem id="dashboard" key={3} href={`/participant/${this.props.match.params.id}`}>
+                    Dashboard
+                  </RouteNavItem>
+                : []
+              }
             </Nav>
           </Navbar.Collapse>
         </Navbar>
