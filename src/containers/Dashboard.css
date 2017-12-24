@@ -13,7 +13,7 @@
 
 .Dashboard .profile {
   margin: 50px;
-  width: 700px;
+  width: 40%;
   height: 100%;
   letter-spacing: 0.5px;
   display: inline-block !important;
@@ -34,7 +34,7 @@
   position: absolute;
   margin-top: 50px;
   margin-left: 20px;
-  width: 525px;
+  width: 40%;
   height: 225px;
   letter-spacing: 0.5px;
   display: inline-block !important;
@@ -52,10 +52,10 @@
 }
 
 .Dashboard .abstract {
-  position: absolute;
+  position: relative;
   margin-top: 325px;
   margin-left: 20px;
-  width: 525px;
+  width: 40%;
   height: 225px;
   letter-spacing: 0.5px;
   display: inline-block !important;
