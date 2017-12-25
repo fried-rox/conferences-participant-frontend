@@ -89,6 +89,16 @@ export default class Dashboard extends Component {
     this.props.history.push(`/participant/${this.props.match.params.id}/updateprofile`);
   }
 
+  handleRegClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/registration`);
+  }
+
+  handleReviewClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/submitabstract`);
+  }
+
   render() {
     return (
       <div className="Dashboard">
@@ -150,13 +160,13 @@ export default class Dashboard extends Component {
 
         <div className="registration">
           <h2>Registration</h2>
-          <Button id="registration">Register!</Button>
+          <Button id="registration" onClick={this.handleRegClick}>Register!</Button>
           <HelpBlock>To register for the conference please click the Register button</HelpBlock>
         </div>
 
         <div className="abstract">
           <h2>Scientific</h2>
-          <Button id="abstract">Submit an Abstract</Button>
+          <Button id="abstract" onClick={this.handleReviewClick}>Submit an Abstract</Button>
           <HelpBlock>To submit an abstract for review please click the Submit an Abstract button</HelpBlock>
         </div>
 

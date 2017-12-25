@@ -67,14 +67,13 @@
   position: normal;
 } */
 
-
-.Dashboard h2 {
+.Dashboard h2, h3 {
   width: 275px;
   display: inline-block !important;
 }
 
 .Dashboard .profile {
-  margin: 30px;
+  margin: 30px 30px 0 0px;
   width: 700px;
   height: 100%;
   letter-spacing: 0.5px;
@@ -96,8 +95,8 @@
   position: absolute;
   margin-top: 30px;
   margin-left: 0px;
-  width: 525px;
-  height: 225px;
+  width: 530px;
+  height: 25%;
   letter-spacing: 0.5px;
   display: inline-block !important;
   font-size: 16px;
@@ -115,10 +114,10 @@
 
 .Dashboard .abstract {
   position: absolute;
-  margin-top: 300px;
+  margin-top: 265px;
   margin-left: 0px;
-  width: 525px;
-  height: 225px;
+  width: 530px;
+  height: 45%;
   letter-spacing: 0.5px;
   display: inline-block !important;
   font-size: 16px;
@@ -134,7 +133,7 @@
   padding: 0px 30px;
 }
 
-.Dashboard #profile, #registration, #abstract {
+.Dashboard #profile, #registration, #abstract, #review {
   float: right;
   margin-top: 20px;
   display: inline-block !important;

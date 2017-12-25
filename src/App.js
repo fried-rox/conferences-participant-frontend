@@ -30,6 +30,12 @@ class App extends Component {
     this.props.history.push("/login");
   }
 
+  navdashboard = event => {
+    event.preventDefault();
+    const id = window.location.pathname.split("/")[2];
+    this.props.history.push(`/participant/${id}`);
+  }
+
   async componentDidMount() {
     try {
       if (await authUser()) {
@@ -74,7 +80,7 @@ class App extends Component {
             </Nav>
             <Nav pullLeft>
               {this.state.isAuthenticated
-                ? <RouteNavItem id="dashboard" key={3} href={`/participant/${this.props.match.params.id}`}>
+                ? <RouteNavItem id="dashboard" key={3} onClick={this.navdashboard}>
                     Dashboard
                   </RouteNavItem>
                 : []

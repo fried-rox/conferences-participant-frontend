@@ -1,7 +1,7 @@
-.UpdateProfile {
+.UpdateProfile, .submission, .registration, .review {
   margin-top: 15px;
   margin-bottom: 15px;
-  margin-left: 50px;
+  margin-left: 100px;
   margin-right: 200px;
 }
 
@@ -24,7 +24,7 @@
   border-radius: 4px;
   color: #000000;
   box-shadow: 0.5px 0.5px 0 0 #3f99a1;
-  background-color: #f2f2f2;
+  background-color: #fff;
   border-color: #3f99a1;
   border-width: thin;
 }

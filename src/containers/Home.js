@@ -86,6 +86,21 @@ export default class Home extends Component {
     this.props.history.push(`/participant/${this.props.match.params.id}/updateprofile`);
   }
 
+  handleRegClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/registration`);
+  }
+
+  handleSubmissionClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/submitabstract`);
+  }
+
+  handleReviewClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/participant/${this.props.match.params.id}/reviewabstract`);
+  }
+
   renderLander() {
     return (
       <div className="lander">
@@ -105,6 +120,8 @@ export default class Home extends Component {
   renderDashboard() {
     return (
       <div className="Dashboard">
+
+        <h1>Conference Title</h1>
 
         <div className="profile">
           <Button id="profile" onClick={this.handleParticipantClick}>Update Profile</Button>
@@ -163,14 +180,18 @@ export default class Home extends Component {
 
         <div className="registration">
           <h2>Registration</h2>
-          <Button id="registration">Register</Button>
+          <Button id="registration" onClick={this.handleRegClick}>Register</Button>
           <HelpBlock>To register for the conference please click the <b>Register</b> button</HelpBlock>
         </div>
 
         <div className="abstract">
           <h2>Scientific</h2>
-          <Button id="abstract">Submit an Abstract</Button>
-          <HelpBlock>To submit an abstract for review please click the <b>Submit an Abstract</b> button</HelpBlock>
+          <h3>Abstract Submission</h3>
+          <Button id="abstract" onClick={this.handleSubmissionClick}>Submit an Abstract</Button>
+          <HelpBlock>To submit an abstract please click the <b>Submit an Abstract</b> button</HelpBlock>
+          <h3>Abstract Review</h3>
+          <Button id="review" onClick={this.handleReviewClick}>Review Abstracts</Button>
+          <HelpBlock>To review abstracts please click the <b>Review an Abstract</b> button</HelpBlock>
         </div>
 
       </div>
