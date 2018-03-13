@@ -8,7 +8,7 @@ import { Button, Table, HelpBlock } from "react-bootstrap";
 
 import { invokeApig } from '../libs/awsLib';
 
-import "./Dashboard.css";
+// import "./Dashboard.css";
 
 //import SearchNotes from "../components/SearchNotes";
 

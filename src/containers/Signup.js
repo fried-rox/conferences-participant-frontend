@@ -6,7 +6,7 @@ import uuid from "uuid";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 
-import "./Signup.css";
+// import "./Signup.css";
 
 export default class Signup extends Component {
   constructor(props) {

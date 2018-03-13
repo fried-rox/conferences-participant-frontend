@@ -17,7 +17,7 @@ import Review from "./containers/Review";
 
 export default ({ childProps }) =>
   <Switch>
-    <AppliedRoute path="/participant/:id" exact component={Home} props={childProps} />
+    <AppliedRoute path="/" exact component={Home} props={childProps} />
     <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
     <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
     <AuthenticatedRoute path="/participant/:id/createprofile" exact component={CreateProfile} props={childProps} />

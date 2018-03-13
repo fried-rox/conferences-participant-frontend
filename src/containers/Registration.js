@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./UpdateProfile.css";
+// import "./UpdateProfile.css";
 
 export default class Registration extends Component {
 

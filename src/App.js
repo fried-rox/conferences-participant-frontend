@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
 import Routes from "./Routes";
 import RouteNavItem from "./components/RouteNavItem";
 // import Home from "./containers/Home";
-import "./App.css";
+import "./css/App.css";
 
 class App extends Component {
   constructor(props) {
@@ -30,11 +30,11 @@ class App extends Component {
     this.props.history.push("/login");
   }
 
-  navdashboard = event => {
-    event.preventDefault();
-    const id = window.location.pathname.split("/")[2];
-    this.props.history.push(`/participant/${id}`);
-  }
+  // navdashboard = event => {
+  //   event.preventDefault();
+  //   const id = window.location.pathname.split("/")[2];
+  //   this.props.history.push(`/participant/${id}`);
+  // }
 
   async componentDidMount() {
     try {
@@ -58,12 +58,11 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App-container">
-        <Navbar collapseOnSelect className="Navbar-container">
+        <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
+              <Link to="/"> TARGET CONFERENCES LTD </Link>
             </Navbar.Brand>
-            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
@@ -78,9 +77,9 @@ class App extends Component {
                     </RouteNavItem>
                   ]}
             </Nav>
-            <Nav pullLeft>
+            <Nav>
               {this.state.isAuthenticated
-                ? <RouteNavItem id="dashboard" key={3} onClick={this.navdashboard}>
+                ? <RouteNavItem id="home" key={3} href="/">
                     Dashboard
                   </RouteNavItem>
                 : []

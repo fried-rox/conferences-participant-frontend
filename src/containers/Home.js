@@ -4,7 +4,7 @@ import { Button, Table, HelpBlock } from "react-bootstrap";
 
 import { invokeApig } from '../libs/awsLib';
 
-import "./Home.css";
+// import "./css/Home.css";
 
 export default class Home extends Component {
   constructor(props) {
@@ -68,7 +68,6 @@ export default class Home extends Component {
         mobilePhoneNumber: results[0].mobilePhoneNumber,
         parNotes: results[0].parNotes
       });
-      debugger;
     } catch (e) {
       alert(e);
     }
@@ -78,7 +77,7 @@ export default class Home extends Component {
 
   participant() {
     return invokeApig({ path: "/participants" });
-    //path: `/participants/${this.props.match.params.id}`
+    path: `/participants/${this.props.match.params.id}`
   }
 
   handleParticipantClick = event => {

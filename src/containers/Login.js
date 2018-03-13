@@ -9,7 +9,7 @@ import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from '../libs/awsLib';
 
-import "./Login.css";
+// import "./Login.css";
 
 export default class Login extends Component {
   constructor(props) {
@@ -46,12 +46,14 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
+      debugger;
       this.setState({
         newUser: newUser
       });
 
       try {
         const results = await this.participant();
+        debugger;
         this.setState({
           participant: results
         });
@@ -59,11 +61,11 @@ export default class Login extends Component {
         alert(e);
       }
       this.props.userHasAuthenticated(true);
-      if (this.state.participant.length === 0) {
-        this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
-      } else {
-        this.props.history.push(`/participant/${this.state.participant[0].participantId}`);
-      }
+      // if (this.state.participant.length === 0) {
+      //   this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
+      // } else {
+      //   this.props.history.push(`/participant/${this.state.participant[0].participantId}`);
+      // }
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

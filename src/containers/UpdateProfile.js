@@ -4,7 +4,7 @@ import { FormGroup, FormControl, ControlLabel, PageHeader  } from "react-bootstr
 import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from "../libs/awsLib";
 
-import "./UpdateProfile.css";
+// import "./UpdateProfile.css";
 
 export default class UpdateProfile extends Component {
   constructor(props, context) {
