@@ -7,7 +7,7 @@ import Routes from "./Routes";
 import RouteNavItem from "./components/RouteNavItem";
 // import Home from "./containers/Home";
 
-import "./css/App.css";
+// import "./css/App.css";
 
 class App extends Component {
   constructor(props) {
