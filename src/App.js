@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -31,6 +31,12 @@ class App extends Component {
     this.props.history.push("/login");
   }
 
+  // navdashboard = event => {
+  //   event.preventDefault();
+  //   const id = window.location.pathname.split("/")[2];
+  //   this.props.history.push(`/participant/${id}`);
+  // }
+
   async componentDidMount() {
     try {
       if (await authUser()) {
@@ -54,13 +60,11 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App-container">
-        <Navbar collapseOnSelect className="Navbar-container">
+        <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <p id="logo"> TARGET CONFERENCES LTD </p>
-              <p id="descirption">Conference Organizers</p>
+              <Link to="/"> TARGET CONFERENCES LTD </Link>
             </Navbar.Brand>
-            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
@@ -75,9 +79,9 @@ class App extends Component {
                     </RouteNavItem>
                   ]}
             </Nav>
-            <Nav pullLeft>
+            <Nav>
               {this.state.isAuthenticated
-                ? <RouteNavItem id="dashboard" key={3} href={`/participant/${this.props.match.params.id}`}>
+                ? <RouteNavItem id="home" key={3} href="/">
                     Dashboard
                   </RouteNavItem>
                 : []

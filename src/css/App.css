@@ -54,16 +54,20 @@
 }
 
 .App-container .navbar-brand {
+<<<<<<< HEAD
   display: flex;
   flex-flow: row wrap;
   overflow: hidden;
 }
 
 .navbar-brand #logo {
+=======
+>>>>>>> origin/master
   font-weight: 900;
   color: #3f99a1;
   text-shadow: 1px 1px #fbb031;
   font-size: 20px;
+<<<<<<< HEAD
 }
 
 .navbar-brand #descirption {
@@ -94,6 +98,22 @@
 .App-container #signuplink {
   order: 0;
   margin: 10px 20px 2px 0;
+=======
+  overflow: hidden;
+}
+
+.App-container .navbar-brand:hover {
+  color: #3f99a1;
+}
+
+.App-container .navbar-brand:visited {
+  color: #3f99a1;
+}
+
+.App-container #loginlink {
+  order: 0;
+  margin: 10px 0 2px 0;
+>>>>>>> origin/master
   min-width: 50px;
   padding: 2px 8px;
   /* padding: 4px 10px 6px 10px; */
@@ -106,10 +126,13 @@
   border-radius: 4px;
 }
 
+<<<<<<< HEAD
 .App-container #signuplink:hover {
   color: #fbb031;
 }
 
+=======
+>>>>>>> origin/master
 .App-container #logoutlink {
   order: 0;
   margin: 10px 0 2px 0;
@@ -129,7 +152,11 @@
   color: #fff;
 }
 
+<<<<<<< HEAD
 .App-container #dashboard {
+=======
+.App-container #home {
+>>>>>>> origin/master
   letter-spacing: 0.5px;
   box-shadow: 1px 1px 0 0 #999;
   order: 0;
@@ -150,7 +177,11 @@
   border-style: solid;
 }
 
+<<<<<<< HEAD
 .App-container #dashboard:hover {
+=======
+.App-container #home:hover {
+>>>>>>> origin/master
   text-decoration: none;
   background-color: #3f99a1;
   color: #fff;
