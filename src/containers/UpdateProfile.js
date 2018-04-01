@@ -5,7 +5,7 @@ import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from "../libs/awsLib";
 import Navigationbar from "./Navigationbar";
 
-import "./UpdateProfile.css";
+// import "./UpdateProfile.css";
 
 export default class UpdateProfile extends Component {
   constructor(props, context) {

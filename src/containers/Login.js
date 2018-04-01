@@ -9,7 +9,7 @@ import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from '../libs/awsLib';
 
-import "./Login.css";
+// import "./Login.css";
 
 export default class Login extends Component {
   constructor(props) {

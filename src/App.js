@@ -6,7 +6,8 @@ import { authUser, signOutUser } from "./libs/awsLib";
 import Routes from "./Routes";
 import RouteNavItem from "./components/RouteNavItem";
 // import Home from "./containers/Home";
-import "./App.css";
+
+import "./css/App.css";
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component {
     catch(e) {
       alert(e);
     }
+    debugger;
 
     this.setState({ isAuthenticating: false });
   }
@@ -55,7 +57,8 @@ class App extends Component {
         <Navbar collapseOnSelect className="Navbar-container">
           <Navbar.Header>
             <Navbar.Brand>
-              <img id="logo" src={require('./images/android.png')} alt="Target conference logo"/>
+              <p id="logo"> TARGET CONFERENCES LTD </p>
+              <p id="descirption">Conference Organizers</p>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

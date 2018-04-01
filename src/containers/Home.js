@@ -4,7 +4,7 @@ import { Button, Table, HelpBlock } from "react-bootstrap";
 
 import { invokeApig } from '../libs/awsLib';
 
-import "./Home.css";
+// import "./Home.css";
 
 export default class Home extends Component {
   constructor(props) {

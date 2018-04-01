@@ -22,20 +22,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://participants-reg-app-uploads",
+    "deploy": "aws s3 sync build/ s3://participants-reg-app-uploads --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id EF902ON5P2I57 --paths /*",
     "eject": "react-scripts eject"
   },
   "description": "Front end for Target Conference Goers",
   "main": "index.js",
   "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/roxy-target/target-conferences-front.git"
-  },
-  "bugs": {
-    "url": "https://github.com/roxy-target/target-conferences-front/issues"
-  },
-  "homepage": "https://github.com/roxy-target/target-conferences-front#readme"
+  "license": "ISC"
 }
