@@ -54,6 +54,12 @@
 }
 
 .App-container .navbar-brand {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+}
+
+.App-container .navbar-brand #logo {
   font-weight: 900;
   color: #3f99a1;
   text-shadow: 1px 1px #fbb031;
@@ -61,11 +67,8 @@
   overflow: hidden;
 }
 
-.App-container .navbar-brand:hover {
-  color: #3f99a1;
-}
-
-.App-container .navbar-brand:visited {
+.App-container .navbar-brand #explanation {
+  margin-left: 20px;
   color: #3f99a1;
 }
 
@@ -82,6 +85,29 @@
   background-color: #3f99a1;
   border-color: #999;
   border-radius: 4px;
+}
+
+.App-container #loginlink:hover {
+  color: #fbb031;
+}
+
+.App-container #signuplink {
+  order: 0;
+  margin: 10px 20px 2px 0;
+  min-width: 50px;
+  padding: 2px 8px;
+  /* padding: 4px 10px 6px 10px; */
+  box-shadow: 1.5px 1.5px 0 0 #fbb031;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #3f99a1;
+  border-color: #999;
+  border-radius: 4px;
+}
+
+.App-container #signuplink:hover {
+  color: #fbb031;
 }
 
 .App-container #logoutlink {

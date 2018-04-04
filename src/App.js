@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -7,7 +7,7 @@ import Routes from "./Routes";
 import RouteNavItem from "./components/RouteNavItem";
 // import Home from "./containers/Home";
 
-// import "./css/App.css";
+import "./css/App.css";
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends Component {
 
     this.userHasAuthenticated(false);
 
-    this.props.history.push("/login");
+    this.props.history.push('/login');
   }
 
   // navdashboard = event => {
@@ -42,6 +42,7 @@ class App extends Component {
       if (await authUser()) {
         this.userHasAuthenticated(true);
       }
+      localStorage.setItem("confIdKey2", window.location.pathname.split("/")[1]);
     }
     catch(e) {
       alert(e);
@@ -63,25 +64,22 @@ class App extends Component {
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/"> TARGET CONFERENCES LTD </Link>
+              <p id="logo"> TARGET CONFERENCES LTD </p>
+              <p id="explanation">Conference Organizers</p>
             </Navbar.Brand>
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
                 ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
-                : [
-                    <RouteNavItem id="signuplink" key={1} href="/signup">
-                      Signup
-                    </RouteNavItem>,
-                    <RouteNavItem id="loginlink" key={2} href="/login">
-                      Login
-                    </RouteNavItem>
-                  ]}
+                : <RouteNavItem id="loginlink" key={1} href={`/${localStorage.getItem('confIdKey2')}/login`}>
+                    Login
+                  </RouteNavItem>
+              }
             </Nav>
             <Nav>
               {this.state.isAuthenticated
-                ? <RouteNavItem id="home" key={3} href="/">
+                ? <RouteNavItem id="home" key={3} href={`/${localStorage.getItem('confIdKey2')}/signup`}>
                     Dashboard
                   </RouteNavItem>
                 : []
