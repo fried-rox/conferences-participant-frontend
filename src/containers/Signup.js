@@ -26,6 +26,19 @@ export default class Signup extends Component {
     };
   }
 
+  async componentDidMount() {
+    try {
+      const check = await setTimeout(this.checkEmail(), 1000);
+    }
+    catch(e) {
+      alert(e);
+    }
+  }
+
+  checkEmail() {
+    const checkBox = prompt("Welcome! Been to a conference organised by Target Conference before? Please type in your email to check:", );
+  }
+
   validateForm() {
     return (
       this.state.email.length > 0 &&

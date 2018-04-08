@@ -105,10 +105,10 @@ export default class Home extends Component {
       <div className="lander">
         <h1> Conference Title </h1>
         <div>
-          <Link to="/signup" id="signupbtn">
+          <Link to={`/${localStorage.getItem('confIdKey2')}/signup`} id="signupbtn">
             Signup
           </Link>
-          <Link to="/login" id="loginbtn">
+          <Link to={`/${localStorage.getItem('confIdKey2')}/login`} id="loginbtn">
             Login
           </Link>
         </div>
