@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -42,7 +42,7 @@ class App extends Component {
       if (await authUser()) {
         this.userHasAuthenticated(true);
       }
-      localStorage.setItem("confIdKey2", window.location.pathname.split("/")[1]);
+      // localStorage.setItem("confIdKey2", window.location.pathname.split("/")[1]);
     }
     catch(e) {
       alert(e);
@@ -64,7 +64,7 @@ class App extends Component {
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <p id="logo"> TARGET CONFERENCES LTD </p>
+              <Link id="logo" to="/new_cat_reg"> TARGET CONFERENCES LTD </Link>
               <p id="explanation">Conference Organizers</p>
             </Navbar.Brand>
           </Navbar.Header>
@@ -72,14 +72,14 @@ class App extends Component {
             <Nav pullRight>
               {this.state.isAuthenticated
                 ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
-                : <RouteNavItem id="loginlink" key={1} href={`/${localStorage.getItem('confIdKey2')}/login`}>
+                : <RouteNavItem id="loginlink" key={1} href={`/login`}>
                     Login
                   </RouteNavItem>
               }
             </Nav>
             <Nav>
               {this.state.isAuthenticated
-                ? <RouteNavItem id="home" key={3} href={`/${localStorage.getItem('confIdKey2')}/signup`}>
+                ? <RouteNavItem id="home" key={3} href={"/"}>
                     Dashboard
                   </RouteNavItem>
                 : []

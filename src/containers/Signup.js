@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import Popup from "../components/Popup";
+
 import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { AuthenticationDetails, CognitoUserPool, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import uuid from "uuid";
 
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
+import { invokeApig } from "../libs/awsLib";
 
-// import "./Signup.css";
+import "../css/Signup.css";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ export default class Signup extends Component {
 
     this.state = {
       isLoading: false,
+      showPopup: true,
       email: "",
       password: "",
       confirmPassword: "",
@@ -22,28 +26,46 @@ export default class Signup extends Component {
       dataGoersId: {
         Name: "",
         Value: null
-      }
+      },
+      participantId: "",
+      parEmail: "",
+      parTitle: "",
+      parFirstName: "",
+      parMiddleName: "",
+      parLastName: "",
+      parGender: "",
+      parWork: "",
+      parWorkDepartment: "",
+      parWorkStreet: "",
+      parWorkCity: "",
+      parWorkState: "",
+      parWorkCountry: "",
+      parWorkZIP: "",
+      workPhoneCode: "",
+      workPhoneNumber: "",
+      parPersonalStreet: "",
+      parPersonalCity: "",
+      parPersonalState: "",
+      parPersonalCountry: "",
+      parPersonalZIP: "",
+      mobilePhoneNumber: "",
+      parNotes: "",
     };
   }
 
-  async componentDidMount() {
-    try {
-      const check = await setTimeout(this.checkEmail(), 1000);
-    }
-    catch(e) {
-      alert(e);
-    }
-  }
-
-  checkEmail() {
-    const checkBox = prompt("Welcome! Been to a conference organised by Target Conference before? Please type in your email to check:", );
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   validateForm() {
     return (
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.password === this.state.confirmPassword
+      this.state.password === this.state.confirmPassword &&
+      this.state.parFirstName.length > 0 &&
+      this.state.parLastName.length > 0
     );
   }
 
@@ -88,11 +110,51 @@ export default class Signup extends Component {
       );
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
+
+      try {
+        const createParticipantObject = {
+          participantId: this.state.dataGoersId.Value,
+          parEmail: this.state.email,
+          parTitle: this.state.parTitle === "" ? undefined : this.state.parTitle,
+          parFirstName: this.state.parFirstName === "" ? undefined : this.state.parFirstName,
+          parMiddleName: this.state.parMiddleName === "" ? undefined : this.state.parMiddleName,
+          parLastName: this.state.parLastName === "" ? undefined : this.state.parLastName,
+          parGender: this.state.parGender === "" ? undefined : this.state.parGender,
+          parWork: this.state.parWork === "" ? undefined : this.state.parWork,
+          parWorkDepartment: this.state.parWorkDepartment === "" ? undefined : this.state.parWorkDepartment,
+          parWorkStreet: this.state.parWorkStreet === "" ? undefined : this.state.parWorkStreet,
+          parWorkCity: this.state.parWorkCity === "" ? undefined : this.state.parWorkCity,
+          parWorkState: this.state.parWorkState === "" ? undefined : this.state.parWorkState,
+          parWorkCountry: this.state.parWorkCountry === "" ? undefined : this.state.parWorkCountry,
+          parWorkZIP: this.state.parWorkZIP === "" ? undefined : this.state.parWorkZIP,
+          workPhoneCode: this.state.workPhoneCode === "" ? undefined : this.state.workPhoneCode,
+          workPhoneNumber: this.state.workPhoneNumber === "" ? undefined : this.state.workPhoneNumber,
+          parPersonalStreet: this.state.parPersonalStreet === "" ? undefined : this.state.parPersonalStreet,
+          parPersonalCity: this.state.parPersonalCity === "" ? undefined : this.state.parPersonalCity,
+          parPersonalState: this.state.parPersonalState === "" ? undefined : this.state.parPersonalState,
+          parPersonalCountry: this.state.parPersonalCountry === "" ? undefined : this.state.parPersonalCountry,
+          parPersonalZIP: this.state.parPersonalZIP === "" ? undefined : this.state.parPersonalZIP,
+          mobilePhoneNumber: this.state.mobilePhoneNumber === "" ? undefined : this.state.mobilePhoneNumber,
+          parNotes: this.state.parNotes === "" ? undefined : this.state.parNotes,
+      }
+      await this.createParticipant(createParticipantObject);
+      } catch (e) {
+        alert(e);
+      }
+      localStorage.setItem("parIdKey", this.state.dataGoersId.Value);
+      this.props.history.push(`/participant/profile`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
+  }
+
+  createParticipant(participant) {
+    return invokeApig({
+      path: "/participants",
+      method: "POST",
+      body: participant
+    });
   }
 
   signup(email, password) {
@@ -199,6 +261,177 @@ export default class Signup extends Component {
         <h1>Conference Title</h1>
         <p>Target Conferences Ltd</p>
         <form onSubmit={this.handleSubmit}>
+        <FormGroup controlId="parTitle">
+          <ControlLabel>Title</ControlLabel>
+          <FormControl
+            onChange={this.handleChange}
+            value={this.state.parTitle}
+            componentClass="select">
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Ms">Ms</option>
+              <option value="Prof">Prof</option>
+              <option value="Dr">Dr</option>
+          </FormControl>
+          </FormGroup>
+          <FormGroup controlId="parFirstName">
+            <ControlLabel>First Name</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parFirstName}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parMiddleName">
+            <ControlLabel>Middle Name</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parMiddleName}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parLastName">
+            <ControlLabel>Last Name</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parLastName}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parGender">
+            <ControlLabel>Gender</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parGender}
+              componentClass="select">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </FormControl>
+          </FormGroup>
+          <FormGroup controlId="parWork">
+            <ControlLabel>Workplace</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWork}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parWorkDepartment">
+            <ControlLabel>Department</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkDepartment}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parWorkStreet">
+            <ControlLabel>Work Street Address</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkStreet}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parWorkCity">
+            <ControlLabel>City</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkCity}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parWorkState">
+            <ControlLabel>State</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkState}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parWorkCountry">
+            <ControlLabel>Country</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkCountry}
+              componentClass="select">
+                <option value="Israel">Israel</option>
+                <option value="South Africa">South Africa</option>
+                <option value="England">England</option>
+                <option value="China">China</option>
+                <option value="India">India</option>
+            </FormControl>
+          </FormGroup>
+          <FormGroup controlId="parWorkZIP">
+            <ControlLabel>ZIP</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parWorkZIP}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="workPhoneCode">
+            <ControlLabel>Work Phone Code</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.workPhoneCode}
+              componentClass="select">
+                <option value="00972"></option>
+                <option value="00975"></option>
+            </FormControl>
+          </FormGroup>
+          <FormGroup controlId="workPhoneNumber">
+            <ControlLabel>Work Phone Number</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.workPhoneNumber}
+              type="text" />
+          </FormGroup>
+          <FormGroup controlId="parPersonalStreet">
+            <ControlLabel>Personal Street Address</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalStreet}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parPersonalCity">
+            <ControlLabel>City</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalCity}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parPersonalState">
+            <ControlLabel>State</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalState}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="parPersonalCountry">
+            <ControlLabel>Country</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalCountry}
+              componentClass="select">
+                <option value="Israel">Israel</option>
+                <option value="South Africa">South Africa</option>
+                <option value="England">England</option>
+                <option value="China">China</option>
+                <option value="India">India</option>
+            </FormControl>
+          </FormGroup>
+          <FormGroup controlId="parPersonalZIP">
+            <ControlLabel>ZIP</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parPersonalZIP}
+              type="text"/>
+          </FormGroup>
+          <FormGroup controlId="mobilePhoneNumber">
+            <ControlLabel>Mobile Phone Number</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.mobilePhoneNumber}
+              type="text" />
+          </FormGroup>
+          <FormGroup controlId="parNotes">
+            <ControlLabel>Notes</ControlLabel>
+            <FormControl
+              onChange={this.handleChange}
+              value={this.state.parNotes}
+              componentClass="textarea"/>
+          </FormGroup>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
@@ -240,12 +473,22 @@ export default class Signup extends Component {
     );
   }
 
-  render() {
+  rendertheForms() {
     return (
       <div className="Signup">
         {this.state.newUser === null
           ? this.renderForm()
           : this.renderConfirmationForm()}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="popupboxemail">
+        {this.state.showPopup
+          ? <Popup text="Welcome! Been to a conference organised by Target Conference?" closePopup={this.togglePopup.bind(this)} />
+          : this.rendertheForms()}
       </div>
     );
   }
