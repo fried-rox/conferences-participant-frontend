@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Link } from "react-router-dom";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 // import decode from "jwt-decode";
@@ -9,7 +10,7 @@ import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 import { invokeApig } from '../libs/awsLib';
 
-// import "./Login.css";
+import "../css/Login.css";
 
 export default class Login extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class Login extends Component {
       message: "",
       newUser: null,
       participant: [],
+      participantId: "",
       dataGoersId: {
         Name: "",
         Value: null
@@ -46,30 +48,32 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
-      debugger;
       this.setState({
         newUser: newUser
       });
 
       try {
         const results = await this.participant();
-        debugger;
         this.setState({
-          participant: results
+          participant: results,
+          participantId: results[0].participantId
         });
+        localStorage.setItem("parRegId", this.state.participantId);
       } catch (e) {
         alert(e);
       }
       this.props.userHasAuthenticated(true);
-      // if (this.state.participant.length === 0) {
-      //   this.props.history.push(`/participant/${this.state.dataGoersId.Value}/createprofile`);
-      // } else {
-      //   this.props.history.push(`/participant/${this.state.participant[0].participantId}`);
-      // }
+
+    this.props.history.push("/view_profile");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
     }
+  }
+
+  handleCreateProfile = event => {
+    event.preventDefault();
+    this.props.history.push(`/new_cat_reg`);
   }
 
   login(email, password) {
@@ -105,7 +109,16 @@ export default class Login extends Component {
     return new Promise((resolve, reject) =>
       user.authenticateUser(authenticationDetails, {
         onSuccess: result => resolve(result),
-        onFailure: err => reject(err)
+        // onFailure: err => reject(err)
+        onFailure: function(err) {
+          if (err.code === 'UserNotFoundException') {
+            reject("The email address entered does not exist in the system");
+          } else if (err.code === 'NotAuthorizedException') {
+            reject("Incorrect password");
+          } else {
+            reject(err.message);
+          }
+        }
       })
     );
   }
@@ -117,36 +130,53 @@ export default class Login extends Component {
   render() {
     return (
       <div className="LogIn">
-        <h1>Conference Title</h1>
-        <p>Target Conferences Ltd</p>
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+
+        <div className="LogInMiddle">
+          <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
+          <h2>LOGIN</h2>
+          <p>*You may have previously attended an event organised by <img id="favicon_logo" src="favicon.ico" alt=""/><img id="logo" src="target_logo_one.png" alt="Target Conferences Ltd."/>.</p>
+          <p> To check please Login:</p>
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup controlId="email">
+              <ControlLabel>Email</ControlLabel>
+              <FormControl
+                autoFocus
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup controlId="password">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+              />
+            </FormGroup>
+            <LoaderButton
+              id="loginbtn"
+              block
+              disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              text="Login"
+              loadingText="Logging in…"
             />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
+          </form>
+        </div>
+
+        <div className="signuplink">
+          <p>YOUR EMAIL ADDRESS DOES NOT EXIST IN THE SYSTEM?</p>
           <LoaderButton
+            id="signupbtn"
             block
-            bsSize="large"
-            disabled={!this.validateForm()}
             type="submit"
-            isLoading={this.state.isLoading}
-            text="Login"
-            loadingText="Logging in…"
+            onClick={this.handleCreateProfile}
+            text="REGISTER HERE"
           />
-        </form>
+        </div>
+
       </div>
     );
   }

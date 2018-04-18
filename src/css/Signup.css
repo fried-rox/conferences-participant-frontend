@@ -1,44 +1,74 @@
-.Signup {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-.SignUp form {
-  margin: 0 auto;
-  max-width: 360px;
-  text-align: left;
-}
-
-.Signup form span.help-block {
-  font-size: 14px;
-  padding-bottom: 0;
-  color: #999;
-}
-
 .SignUp {
-  padding: 50px 0;
-  text-align: center;
+  display: flex;
+  margin: 0 0 50px 450px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  width: 700px;
 }
 
 .SignUp h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   font-size: 40px;
+  margin-bottom: 40px;
 }
 
-.SignUp p {
+.SignUp #banner {
+  height: 100%;
+  width: 100%;
+}
+
+.SignUp h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.SignUp h3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  padding-bottom: 5px;
+  margin: 50px 0 20px 0;
+  align-self: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #3f99a1;
+}
+
+.SignUp form {
+  margin: 0;
+  text-align: left;
+  width: 550px;
+}
+
+.SignUp .form-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  align-items: flex-start;
+  margin: 0 0 15px 0;
+}
+
+
+.SignUp .form-group .control-label {
+  order: 0;
+  padding-right: 10px;
+  width: 300px;
+}
+
+.SignUp span.help-block {
+  order: 10;
+  font-size: 14px;
+  padding: 0;
   color: #999;
-  font-size: 20px;
-  font-weight: 250;
+  margin: 0 0 15px 195px;
 }
 
-.SignUp div {
-  padding-top: 10px;
-}
 
-.SignUp #email, #password, #confirmPassword {
+/* .SignUp #email, #password, #confirmPassword {
   display: block;
   margin-top: 0;
   padding: 4px 10px;
@@ -50,23 +80,22 @@
   background-color: #fff;
   border-color: #3f99a1;
   border-width: thin;
+} */
+
+.confirm {
+  display: flex;
+  margin: 0 0 0 500px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 70px;
+  width: 700px;
 }
 
 .confirm form {
   margin: 0 auto;
-  max-width: 320px;
+  max-width: 360px;
   text-align: left;
-}
-
-.confirm form span.help-block {
-  font-size: 14px;
-  padding-bottom: 10px;
-  color: #999;
-}
-
-.confirm {
-  padding: 50px 0;
-  text-align: center;
 }
 
 .confirm h1 {
@@ -75,17 +104,13 @@
   font-size: 40px;
 }
 
-.confirm p {
+.confirm form span.help-block {
+  font-size: 14px;
+  padding-bottom: 0;
   color: #999;
-  font-size: 20px;
-  font-weight: 250;
 }
 
-.confirm div {
-  padding-top: 10px;
-}
-
-.confirm #confirmationCode {
+/* .confirm #confirmationCode {
   display: block;
   margin-top: 5px;
   padding: 4px 10px;
@@ -97,4 +122,4 @@
   background-color: #fff;
   border-color: #3f99a1;
   border-width: thin;
-}
+} */

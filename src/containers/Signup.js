@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Popup from "../components/Popup";
+// import Popup from "../components/Popup";
 
 import { HelpBlock, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { AuthenticationDetails, CognitoUserPool, CognitoUserAttribute } from "amazon-cognito-identity-js";
@@ -28,7 +28,6 @@ export default class Signup extends Component {
         Value: null
       },
       participantId: "",
-      parEmail: "",
       parTitle: "",
       parFirstName: "",
       parMiddleName: "",
@@ -114,7 +113,6 @@ export default class Signup extends Component {
       try {
         const createParticipantObject = {
           participantId: this.state.dataGoersId.Value,
-          parEmail: this.state.email,
           parTitle: this.state.parTitle === "" ? undefined : this.state.parTitle,
           parFirstName: this.state.parFirstName === "" ? undefined : this.state.parFirstName,
           parMiddleName: this.state.parMiddleName === "" ? undefined : this.state.parMiddleName,
@@ -141,8 +139,8 @@ export default class Signup extends Component {
       } catch (e) {
         alert(e);
       }
-      localStorage.setItem("parIdKey", this.state.dataGoersId.Value);
-      this.props.history.push(`/participant/profile`);
+      localStorage.setItem("parRegId", this.state.dataGoersId.Value);
+      this.props.history.push("/view_profile");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -198,6 +196,8 @@ export default class Signup extends Component {
     );
   }
 
+  //InvalidPasswordException: Password did not conform with policy: Password must have uppercase characters
+
   confirm(user, confirmationCode) {
     return new Promise((resolve, reject) =>
       user.confirmRegistration(confirmationCode, true, function(err, result) {
@@ -228,8 +228,6 @@ export default class Signup extends Component {
   renderConfirmationForm() {
     return (
       <div className="confirm">
-        <h1>Conference Title</h1>
-        <p>Target Conferences Ltd</p>
         <form onSubmit={this.handleConfirmationSubmit}>
           <FormGroup controlId="confirmationCode" bsSize="large">
             <ControlLabel>Confirmation Code</ControlLabel>
@@ -258,9 +256,9 @@ export default class Signup extends Component {
   renderForm() {
     return (
       <div className="SignUp">
-        <h1>Conference Title</h1>
-        <p>Target Conferences Ltd</p>
+        <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
         <form onSubmit={this.handleSubmit}>
+        <h3>Basic Details</h3>
         <FormGroup controlId="parTitle">
           <ControlLabel>Title</ControlLabel>
           <FormControl
@@ -305,6 +303,7 @@ export default class Signup extends Component {
                 <option value="Male">Male</option>
             </FormControl>
           </FormGroup>
+          <h3>Affiliations</h3>
           <FormGroup controlId="parWork">
             <ControlLabel>Workplace</ControlLabel>
             <FormControl
@@ -377,6 +376,17 @@ export default class Signup extends Component {
               value={this.state.workPhoneNumber}
               type="text" />
           </FormGroup>
+          <h3>Contact Details</h3>
+          <FormGroup controlId="email">
+            <ControlLabel>Email</ControlLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <HelpBlock>Please use a valid email address.</HelpBlock>
           <FormGroup controlId="parPersonalStreet">
             <ControlLabel>Personal Street Address</ControlLabel>
             <FormControl
@@ -432,26 +442,17 @@ export default class Signup extends Component {
               value={this.state.parNotes}
               componentClass="textarea"/>
           </FormGroup>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <HelpBlock>Please use a valid email address.</HelpBlock>
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <h3>Security</h3>
+          <FormGroup controlId="password">
             <ControlLabel>Password</ControlLabel>
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
             />
-            <HelpBlock>Your password must be at least 8 characters long. It must include at least 1 number, 1 special character and 1 upper case letter.</HelpBlock>
           </FormGroup>
-          <FormGroup controlId="confirmPassword" bsSize="large">
+          <HelpBlock>Must be at least 8 characters long with at least 1 number, 1 special character and 1 upper case letter.</HelpBlock>
+          <FormGroup controlId="confirmPassword">
             <ControlLabel>Confirm Password</ControlLabel>
             <FormControl
               value={this.state.confirmPassword}
@@ -465,30 +466,20 @@ export default class Signup extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Signup"
-            loadingText="Signing up…"
+            text="Create Profile"
+            loadingText="Creating a profile…"
           />
         </form>
       </div>
     );
   }
 
-  rendertheForms() {
+  render() {
     return (
       <div className="Signup">
         {this.state.newUser === null
           ? this.renderForm()
           : this.renderConfirmationForm()}
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div className="popupboxemail">
-        {this.state.showPopup
-          ? <Popup text="Welcome! Been to a conference organised by Target Conference?" closePopup={this.togglePopup.bind(this)} />
-          : this.rendertheForms()}
       </div>
     );
   }

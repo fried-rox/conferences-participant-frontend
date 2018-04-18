@@ -56,58 +56,60 @@
 .App-container .navbar-brand {
   display: flex;
   flex-flow: row nowrap;
-  height: 100%;
+  padding: 0;
+  height: 65px;
 }
 
-.App-container .navbar-brand #logo {
+/* .App-container .navbar-brand img {
+  height: 70px;
+  margin: 5px 0 0 5px;
+} */
+
+/* .App-container .navbar-brand #logo {
   font-weight: 900;
   color: #3f99a1;
   text-shadow: 1px 1px #fbb031;
   font-size: 20px;
   overflow: hidden;
-}
+} */
 
-.App-container .navbar-brand #explanation {
-  margin-left: 20px;
-  color: #3f99a1;
-}
+/* .App-container .navbar-brand #explanation {
+  margin: 20px 0 0 20px;
+  color: #999;
+} */
 
 .App-container #loginlink {
   order: 0;
-  margin: 10px 0 2px 0;
+  margin: 20px 20px 0 0;
   min-width: 50px;
   padding: 2px 8px;
-  /* padding: 4px 10px 6px 10px; */
-  box-shadow: 1.5px 1.5px 0 0 #fbb031;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: #000;
+  font-weight: 700;
   font-size: 16px;
-  background-color: #3f99a1;
-  border-color: #999;
-  border-radius: 4px;
+  background-color: #fff;
 }
 
 .App-container #loginlink:hover {
-  color: #fbb031;
+  color: #3f99a1;
+  text-shadow: 1px 1px #fbb031;
 }
 
 .App-container #signuplink {
   order: 0;
-  margin: 10px 20px 2px 0;
+  margin: 20px 20px 0 0;
   min-width: 50px;
   padding: 2px 8px;
-  /* padding: 4px 10px 6px 10px; */
-  box-shadow: 1.5px 1.5px 0 0 #fbb031;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: #000;
+  font-weight: 700;
   font-size: 16px;
-  background-color: #3f99a1;
-  border-color: #999;
-  border-radius: 4px;
+  background-color: #fff;
 }
 
 .App-container #signuplink:hover {
   color: #fbb031;
+  text-shadow: 1px 1px #3f99a1;
 }
 
 .App-container #logoutlink {
@@ -126,32 +128,5 @@
 }
 
 .App-container #logoutlink:hover {
-  color: #fff;
-}
-
-.App-container #home {
-  letter-spacing: 0.5px;
-  box-shadow: 1px 1px 0 0 #999;
-  order: 0;
-  align-self: flex-start;
-  display: inline-block !important;
-  margin: 10px 0 2px 0;
-  padding: 1px 8px;
-  font-size: 16px;
-  line-height: 1.5;
-  border-radius: 4px;
-  color: #000000;
-  font-weight: 500;
-  background-color: #fff;
-  border-color: #3f99a1;
-  text-align: center;
-  vertical-align: middle;
-  border-width: thin;
-  border-style: solid;
-}
-
-.App-container #home:hover {
-  text-decoration: none;
-  background-color: #3f99a1;
   color: #fff;
 }

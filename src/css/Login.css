@@ -1,53 +1,130 @@
-.Login {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 50px;
-  margin-right: 200px;
-}
-
-.LogIn form {
-  margin: 0 auto;
-  max-width: 360px;
-  text-align: left;
-}
-
-.LogIn form span.help-block {
-  font-size: 14px;
-  padding-bottom: 10px;
-  color: #999;
-}
-
 .LogIn {
-  padding: 50px 0;
-  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 70px;
+  width: 100%;
 }
 
 .LogIn h1 {
+  order: 0;
   font-family: "Open Sans", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 40px;
 }
 
-.LogIn p {
-  color: #999;
-  font-size: 20px;
-  font-weight: 250;
+.LogIn #banner {
+  height: 100%;
+  width: 100%;
 }
 
-.LogIn div {
-  padding-top: 10px;
+.LogIn .LogInMiddle {
+  order: 2;
+  width: 700px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
 
-.LogIn #email, #password {
-  display: block;
-  margin-top: 5px;
-  padding: 4px 10px;
+.LogIn .LogInMiddle h2 {
+  order: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  margin: 20px 0 0 0;
+  font-size: 30px;
+  color: #3f99a1;
+  content: left;
+}
+
+.LogIn .LogInMiddle p {
+  order: 1;
+  margin: 5px 0 0 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.LogIn .LogInMiddle p #favicon_logo {
+  margin: 0 0 0 5px;
+  height: 25px;
+}
+
+.LogIn .LogInMiddle p #logo {
+  margin: 0;
+  height: 15px;
+}
+
+.LogIn .LogInMiddle form {
+  order: 2;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+/* .LogIn form span.help-block {
   font-size: 14px;
-  line-height: 1.5;
-  border-radius: 4px;
+  padding-bottom: 10px;
+  color: #999;
+} */
+
+.LogIn .LogInMiddle form .form-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  margin: 20px 0;
+  padding: 0;
+  font-size: 20px;
   color: #000000;
-  font-weight: 400;
-  background-color: #fff;
-  border-color: #3f99a1;
-  border-width: thin;
+  font-weight: 500;
+  width: 400px;
+}
+
+.LogIn .LogInMiddle form .form-group .control-label {
+  order: 0;
+  width: 150px;
+  padding-right: 20px;
+}
+
+.LogIn .LogInMiddle form .form-group .form-control {
+  order: 2;
+  width: 250px;
+  height: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #999;
+  border-radius: 2px;
+}
+
+.LogIn .LogInMiddle form #loginbtn {
+  order: 4;
+  width: 200px;
+  background-color: #3f99a1;
+  color: #fff;
+}
+
+.LogIn .signuplink {
+  order: 3;
+  width: 700px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  align-self: center;
+  margin-top: 30px;
+}
+
+.LogIn .signuplink p {
+  order: 0;
+  align-self: stretch;
+  margin: 5px 0 2px 0;
+  font-size: 22px;
+  font-weight: 500;
+  color: #000;
+}
+
+.LogIn .signuplink #signupbtn {
+  width: 200px;
+  border-color: #fbb031;
+  background-color: #fbb031;
+  color: #fff;
 }

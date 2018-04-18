@@ -1,17 +1,27 @@
 .Dashboard {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 50px;
-  margin-right: 200px;
-  position: normal;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 100px;
+  margin: 0;
 }
 
-.Dashboard h2 {
+.Dashboard #banner {
+  width: 100%;
+}
+
+.Dashboard .maininfo {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* .Dashboard h2 {
   width: 275px;
   display: inline-block !important;
-}
+} */
 
-.Dashboard .profile {
+/* .Dashboard .profile {
   margin: 50px;
   width: 60%;
   height: 100%;
@@ -22,15 +32,14 @@
   border-radius: 4px;
   color: #000000;
   font-weight: 500;
-  /* background-color: #fff; */
   border-color: #fbb031;
   text-align: left;
   border-width: thin;
   border-style: solid;
   padding: 0px 30px;
-}
+} */
 
-.Dashboard .registration {
+/* .Dashboard .registration {
   position: relative;
   margin-top: 50px;
   margin-left: 20px;
@@ -42,16 +51,14 @@
   line-height: 1.5;
   border-radius: 4px;
   color: #000000;
-  font-weight: 500;
-  /* background-color: #fff; */
   border-color: #fbb031;
   text-align: left;
   border-width: thin;
   border-style: solid;
   padding: 0px 30px;
-}
+} */
 
-.Dashboard .abstract {
+/* .Dashboard .abstract {
   position: relative;
   margin-top: 325px;
   margin-left: 20px;
@@ -64,14 +71,13 @@
   border-radius: 4px;
   color: #000000;
   font-weight: 500;
-  /* background-color: #fff; */
   border-color: #fbb031;
   text-align: left;
   border-width: thin;
   border-style: solid;
   padding: 0px 30px;
-}
-
+} */
+/*
 .Dashboard #profile, #registration, #abstract {
   float: right;
   margin-top: 20px;
@@ -84,4 +90,4 @@
   background-color: #3f99a1;
   border-color: #3f99a1;
   border-radius: 4px 4px 4px 4px;
-}
+} */

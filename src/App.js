@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap"; //adding a navigation bar from bootstrap
 
 import { authUser, signOutUser } from "./libs/awsLib";
@@ -28,7 +28,7 @@ class App extends Component {
 
     this.userHasAuthenticated(false);
 
-    this.props.history.push('/login');
+    this.props.history.push('/welcome');
   }
 
   // navdashboard = event => {
@@ -47,7 +47,6 @@ class App extends Component {
     catch(e) {
       alert(e);
     }
-    debugger;
 
     this.setState({ isAuthenticating: false });
   }
@@ -64,25 +63,20 @@ class App extends Component {
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link id="logo" to="/new_cat_reg"> TARGET CONFERENCES LTD </Link>
-              <p id="explanation">Conference Organizers</p>
+              <img id="logo" src="target_logo.png" alt="TARGET CONFERENCES LTD" />
             </Navbar.Brand>
+            <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
                 ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
-                : <RouteNavItem id="loginlink" key={1} href={`/login`}>
-                    Login
-                  </RouteNavItem>
-              }
-            </Nav>
-            <Nav>
-              {this.state.isAuthenticated
-                ? <RouteNavItem id="home" key={3} href={"/"}>
-                    Dashboard
-                  </RouteNavItem>
-                : []
+                : [<RouteNavItem id="loginlink" key={1} href={`/welcome`}>
+                    LOGIN
+                  </RouteNavItem>,
+                  <RouteNavItem id="signuplink" key={2} href={'/new_cat_reg'}>
+                    REGISTER
+                  </RouteNavItem>]
               }
             </Nav>
           </Navbar.Collapse>
