@@ -1,28 +1,39 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+// import { Navbar, Nav } from "react-bootstrap";
 
 import RouteNavItem from "../components/RouteNavItem";
 
-// import './Navigationbar.css';
+import "../css/Navigationbar.css";
 
 export default class Navigationbar extends Component {
 
-  handleDashboardClick = event => {
+  handleDetailsClick = event => {
     event.preventDefault();
-    this.props.history.push(`/participant/${this.props.match.params.id}`);
+    this.props.history.push("/view_profile");
+  }
+
+  handleRegistrationClick = event => {
+    event.preventDefault();
+    this.props.history.push("/registration");
+  }
+
+  handleSubmissionClick = event => {
+    event.preventDefault();
+    this.props.history.push("/submit_abstract");
+  }
+
+  handleReviewClick = event => {
+    event.preventDefault();
+    this.props.history.push("/review_abstract");
   }
 
   render() {
     return (
-      <div>
-        <Navbar className="nav-container">
-          <Nav>
-            <RouteNavItem key={4} onClick={this.handleDashboardClick}>Dashboard</RouteNavItem>
-            <RouteNavItem key={5} href="#">Profile</RouteNavItem>
-            <RouteNavItem key={6} href="#">Registration</RouteNavItem>
-            <RouteNavItem key={7} href="#">Scientific</RouteNavItem>
-          </Nav>
-        </Navbar>
+      <div className="navbarsecond">
+        <RouteNavItem key={4} id="home" onClick={this.handleDetailsClick}>Home</RouteNavItem>
+        <RouteNavItem key={5} id="reg" onClick={this.handleRegistrationClick}>Registration</RouteNavItem>
+        <RouteNavItem key={6} id="absub" onClick={this.handleSubmissionClick}>Abstract Submission</RouteNavItem>
+        <RouteNavItem key={7} id="abrev" onClick={this.handleReviewClick}>Abstract Review</RouteNavItem>
       </div>
     );
   }

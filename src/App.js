@@ -15,7 +15,8 @@ class App extends Component {
 
     this.state = {
       isAuthenticated: false,
-      isAuthenticating: true
+      isAuthenticating: true,
+      conferenceId: ""
     };
   }
 
@@ -28,26 +29,20 @@ class App extends Component {
 
     this.userHasAuthenticated(false);
 
-    this.props.history.push('/welcome');
-  }
+    this.props.history.push(`/login/${localStorage.getItem("confIdKey")}`);
 
-  // navdashboard = event => {
-  //   event.preventDefault();
-  //   const id = window.location.pathname.split("/")[2];
-  //   this.props.history.push(`/participant/${id}`);
-  // }
+    localStorage.clear();
+  }
 
   async componentDidMount() {
     try {
       if (await authUser()) {
         this.userHasAuthenticated(true);
       }
-      // localStorage.setItem("confIdKey2", window.location.pathname.split("/")[1]);
-    }
-    catch(e) {
+      localStorage.setItem("confIdKey", this.props.location.pathname.split("/")[2]);
+    } catch(e) {
       alert(e);
     }
-
     this.setState({ isAuthenticating: false });
   }
 
@@ -70,11 +65,11 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
-                ? <NavItem id="logoutlink" onClick={this.handleLogout}>Logout</NavItem>
-                : [<RouteNavItem id="loginlink" key={1} href={`/welcome`}>
+                ? <NavItem id="logoutlink" onClick={this.handleLogout}>LOGOUT</NavItem>
+                : [<RouteNavItem id="loginlink" key={1} href={`/login/${localStorage.getItem("confIdKey")}`}>
                     LOGIN
                   </RouteNavItem>,
-                  <RouteNavItem id="signuplink" key={2} href={'/new_cat_reg'}>
+                  <RouteNavItem id="signuplink" key={2} href={`/new_cat_reg/${localStorage.getItem("confIdKey")}`}>
                     REGISTER
                   </RouteNavItem>]
               }

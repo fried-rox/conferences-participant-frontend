@@ -114,19 +114,17 @@
 
 .App-container #logoutlink {
   order: 0;
-  margin: 10px 0 2px 0;
+  margin: 20px 20px 0 0;
   min-width: 50px;
   padding: 2px 8px;
-  /* padding: 4px 10px 6px 10px; */
-  box-shadow: 1.5px 1.5px 0 0 #3f99a1;
   letter-spacing: 0.5px;
   color: #000;
+  font-weight: 700;
   font-size: 16px;
-  background-color: #a6a6a6;
-  border-color: #999;
-  border-radius: 4px;
+  background-color: #fff;
 }
 
 .App-container #logoutlink:hover {
-  color: #fff;
+  color: #3f99a1;
+  text-shadow: 1px 1px #fbb031;
 }

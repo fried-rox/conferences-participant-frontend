@@ -1,35 +1,95 @@
-.UpdateProfile, .submission, .registration, .review {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 100px;
-  margin-right: 200px;
+.UpdateProfile {
+  display: flex;
+  margin: 50px 0 50px 450px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  width: 700px;
 }
 
-.ParticipantUpdate form {
-  padding-bottom: 15px;
+.UpdateProfile .idenification {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: baseline;
+  margin: 50px 0 0 0;
 }
 
-.ParticipantUpdate form textarea {
+.UpdateProfile .idenification span {
+  font-size: 40px;
+  margin: 0;
+}
+
+.UpdateProfile .idenification h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  margin: 0 20px;
+}
+
+.UpdateProfile .ParticipantUpdate {
+  margin: 0;
+  width: 550px;
+}
+
+.UpdateProfile .ParticipantUpdate h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  padding-bottom: 5px;
+  margin: 50px 0 20px 0;
+  align-self: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #3f99a1;
+}
+
+.ParticipantUpdate .form-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  align-items: flex-start;
+  margin: 0 0 15px 0;
+}
+
+
+.ParticipantUpdate .form-group .control-label {
+  order: 0;
+  padding-right: 10px;
+  width: 300px;
+}
+
+/* .ParticipantUpdate form textarea {
   height: 300px;
   font-size: 24px;
-}
+} */
 
-.ParticipantUpdate #parTitle, #parFirstName, #parMiddleName, #parLastName, #parGender, #parWork, #parWorkDepartment, #parWorkStreet, #parWorkCity, #parWorkState, #parWorkCountry, #parWorkZIP, #workPhoneCode, #workPhoneNumber, #parPersonalStreet, #parPersonalCity, #parPersonalState, #parPersonalCountry, #parPersonalZIP, #mobilePhoneNumber, #parNotes {
+/* .ParticipantUpdate #parTitle, #parFirstName, #parMiddleName, #parLastName, #parGender, #parWork, #parWorkDepartment, #parWorkStreet, #parWorkCity, #parWorkState, #parWorkCountry, #parWorkZIP, #workPhoneCode, #workPhoneNumber, #parPersonalStreet, #parPersonalCity, #parPersonalState, #parPersonalCountry, #parPersonalZIP, #mobilePhoneNumber, #parNotes {
   display: block;
   margin-top: 0;
   padding: 4px 10px;
   font-size: 14px;
   line-height: 1.5;
-  /*width: 600px;*/
+  width: 600px;
   border-radius: 4px;
   color: #000000;
   box-shadow: 0.5px 0.5px 0 0 #3f99a1;
   background-color: #fff;
   border-color: #3f99a1;
   border-width: thin;
+} */
+
+.ParticipantUpdate .create-button {
+  margin: 50px 0 20px 0;
+  border-color: #fbb031;
+  background-color: #fbb031;
+  color: #000;
+  font-weight: 600;
 }
 
 .ParticipantUpdate .create-button:hover {
   background-color: #3f99a1;
   border-color: #3f99a1;
+  color: #fff;
 }

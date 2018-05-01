@@ -64,7 +64,7 @@ export default class Login extends Component {
       }
       this.props.userHasAuthenticated(true);
 
-    this.props.history.push("/view_profile");
+    this.props.history.push(`/view_profile`);
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -73,7 +73,7 @@ export default class Login extends Component {
 
   handleCreateProfile = event => {
     event.preventDefault();
-    this.props.history.push(`/new_cat_reg`);
+    this.props.history.push(`/new_cat_reg/${localStorage.getItem("confIdKey")}`);
   }
 
   login(email, password) {

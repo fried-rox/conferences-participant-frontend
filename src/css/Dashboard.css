@@ -1,93 +1,148 @@
-.Dashboard {
+.MainHomeDashboard {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
+  width: 100%;
+}
+
+.Dashboard {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding: 100px;
-  margin: 0;
+  padding: 70px 50px;
+  margin: 65px 0 0 0;
+  width: 100%;
+  height: 100%;
 }
 
 .Dashboard #banner {
   width: 100%;
+  margin-bottom: 20px;
 }
 
-.Dashboard .maininfo {
+.Dashboard .profile .editinginfo {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* .Dashboard h2 {
-  width: 275px;
-  display: inline-block !important;
-} */
+.Dashboard #editbtn {
+  align-self: flex-end;
+}
 
-/* .Dashboard .profile {
-  margin: 50px;
-  width: 60%;
-  height: 100%;
-  letter-spacing: 0.5px;
-  display: inline-block !important;
-  font-size: 16px;
-  line-height: 1.5;
-  border-radius: 4px;
-  color: #000000;
-  font-weight: 500;
-  border-color: #fbb031;
-  text-align: left;
-  border-width: thin;
-  border-style: solid;
-  padding: 0px 30px;
-} */
+.Dashboard .profile {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 55%;
+  background-color: #f2f2f2;
+  padding: 30px;
+  margin-right: 30px;
+}
 
-/* .Dashboard .registration {
-  position: relative;
-  margin-top: 50px;
-  margin-left: 20px;
-  width: 40%;
-  height: 225px;
-  letter-spacing: 0.5px;
-  display: inline-block !important;
-  font-size: 16px;
-  line-height: 1.5;
-  border-radius: 4px;
-  color: #000000;
-  border-color: #fbb031;
-  text-align: left;
-  border-width: thin;
-  border-style: solid;
-  padding: 0px 30px;
-} */
+.Dashboard .participation {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 45%;
+}
 
-/* .Dashboard .abstract {
-  position: relative;
-  margin-top: 325px;
-  margin-left: 20px;
-  width: 40%;
-  height: 225px;
-  letter-spacing: 0.5px;
-  display: inline-block !important;
-  font-size: 16px;
-  line-height: 1.5;
-  border-radius: 4px;
-  color: #000000;
-  font-weight: 500;
-  border-color: #fbb031;
-  text-align: left;
-  border-width: thin;
-  border-style: solid;
-  padding: 0px 30px;
-} */
-/*
-.Dashboard #profile, #registration, #abstract {
-  float: right;
-  margin-top: 20px;
-  display: inline-block !important;
-  box-shadow: 1px 1px 0 0 #fbb031;
-  letter-spacing: 0.5px;
-  color: #fff;
-  height: 30px;
-  font-size: 14px;
-  background-color: #3f99a1;
-  border-color: #3f99a1;
-  border-radius: 4px 4px 4px 4px;
-} */
+.Dashboard h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  padding-bottom: 5px;
+  margin: 0 0 12px 0;
+  align-self: flex-start;
+}
+
+.Dashboard h3 {
+  margin: 10px 0 10px 0;
+  font-size: 25px;
+  color: #3f99a1;
+  font-weight: 600;
+}
+
+.Dashboard #edit {
+  font-size: 20px;
+  margin: 5px 0 0 0;
+}
+
+.Dashboard .editinginfo {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.Dashboard #editclick {
+  border: 0;
+  padding: 0;
+  margin: 12px 0 0 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.Dashboard #editbtn {
+  border: 0;
+  padding: 0;
+  align-self: flex-start;
+  background-color: #f2f2f2;
+  color: #fbb031;
+  font-size: 40px;
+  margin: 0 10px 10px 10px;
+}
+
+.Dashboard #editbtn:hover {
+  color: #3f99a1;
+}
+
+.Dashboard .registration, .abstract, .review {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: flex-start;
+  vertical-align: top;
+  align-items: flex-start;
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px 25px;
+  font-size: 20px;
+  height: 100px;
+}
+
+.Dashboard #registrationbtn, #abstractbtn {
+  align-self: flex-start;
+  border: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #3f99a1;
+  font-size: 60px;
+  margin: 0 10px 10px 10px;
+}
+
+.Dashboard #reviewbtn {
+  border: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #3f99a1;
+  font-size: 60px;
+  margin: 15px 10px 0 10px;
+}
+
+.Dashboard #registrationbtn:hover, #abstractbtn:hover, #reviewbtn:hover {
+  color: #fbb031;
+}
+
+.Dashboard #reginfo, #subinfo {
+  border: 0;
+  padding: 0;
+  margin: 15px 10px 10px 10px;
+  font-weight: 600;
+}
+
+.Dashboard #revinfo {
+  border: 0;
+  padding: 0;
+  margin: 10px;
+  font-weight: 600;
+}

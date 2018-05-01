@@ -1,0 +1,21 @@
+.reviewfullpage {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.reviewpage {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 120px 0 0 50px;
+  padding: 0;
+}
+
+.reviewpage h1 {
+  order: 0;
+  font-size: 30px;
+  font-weight: 600;
+}

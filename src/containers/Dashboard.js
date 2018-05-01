@@ -8,6 +8,7 @@ import { Button, Table, HelpBlock } from "react-bootstrap";
 
 import { invokeApig } from '../libs/awsLib';
 import Login from "./Login";
+import Navigationbar from "./Navigationbar";
 
 import "../css/Dashboard.css";
 
@@ -95,22 +96,33 @@ export default class Dashboard extends Component {
     this.props.history.push(`/registration`);
   }
 
-  handleReviewClick = event => {
+  handleAbstractClick = event => {
     event.preventDefault();
     this.props.history.push(`/submit_abstract`);
   }
 
+  handleReviewClick = event => {
+    event.preventDefault();
+    this.props.history.push(`/review_abstract`);
+  }
+
   renderDashboard() {
     return (
-      <div className="Dashboard">
+      <div className="MainHomeDashboard">
 
-        <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
+        <Navigationbar {...this.props}/>
 
-        <div className="maininfo">
+        <div className="Dashboard">
+
           <div className="profile">
-            <Button id="profile" onClick={this.handleParticipantClick}>Update Profile</Button>
-            <h2>Personal Details</h2>
-            <HelpBlock>Please check your details and if anything has changed please ammend them by clicking the <i>Update Profile</i> button.</HelpBlock>
+            <h2>{this.state.parTitle} {this.state.parFirstName} {this.state.parMiddleName} {this.state.parLastName}</h2>
+            <HelpBlock id="edit">Please check if there are any changes.</HelpBlock>
+            <div className="editinginfo">
+              <Button id="editbtn" onClick={this.handleParticipantClick}>
+                <span className="glyphicon glyphicon-pencil"></span></Button>
+              <HelpBlock id="editclick">CLICK TO EDIT</HelpBlock>
+            </div>
+            <h3>Basic Details</h3>
             <div>
               <Table responsive>
                 <tbody>
@@ -141,7 +153,7 @@ export default class Dashboard extends Component {
                 </tbody>
               </Table>
             </div>
-            <h3>Contact details</h3>
+            <h3>Contact Details</h3>
             <div>
               <Table responsive>
                 <tbody>
@@ -162,19 +174,25 @@ export default class Dashboard extends Component {
             </div>
           </div>
 
-          <div className="participantion">
+          <div className="participation">
+            <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
+            <h3>Welcome to EVENT TITLE</h3>
             <div className="registration">
-              <h2>Registration</h2>
-              <Button id="registration" onClick={this.handleRegClick}>Register!</Button>
-              <HelpBlock>To register for the conference please click the Register button</HelpBlock>
+              <Button id="registrationbtn" onClick={this.handleRegClick}><span className="glyphicon glyphicon-check"></span></Button>
+              <HelpBlock id="reginfo">To register.</HelpBlock>
             </div>
 
             <div className="abstract">
-              <h2>Scientific</h2>
-              <Button id="abstract" onClick={this.handleReviewClick}>Submit an Abstract</Button>
-              <HelpBlock>To submit an abstract for review please click the Submit an Abstract button</HelpBlock>
+              <Button id="abstractbtn" onClick={this.handleAbstractClick}><span className="glyphicon glyphicon-list-alt"></span></Button>
+              <HelpBlock id="subinfo">To submit abstracts.</HelpBlock>
+            </div>
+
+            <div className="review">
+              <Button id="reviewbtn" onClick={this.handleReviewClick}><span className="glyphicon glyphicon-eye-open"></span></Button>
+              <HelpBlock id="revinfo">You are a scientific abstract reviewer for this event. Click here to review the abstracts that have been assigned to you.</HelpBlock>
             </div>
           </div>
+
         </div>
 
       </div>
