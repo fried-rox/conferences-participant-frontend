@@ -256,7 +256,7 @@ export default class Signup extends Component {
   renderForm() {
     return (
       <div className="SignUp">
-        <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
+        <img id="banner" src={require("../images/Banner.jpg")} alt="Conference Banner"/>
         <form onSubmit={this.handleSubmit}>
         <h3>Basic Details</h3>
         <FormGroup controlId="parTitle">

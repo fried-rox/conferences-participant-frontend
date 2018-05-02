@@ -175,7 +175,7 @@ export default class Dashboard extends Component {
           </div>
 
           <div className="participation">
-            <img id="banner" src="Banner.jpg" alt="Conference Banner"/>
+            <img id="banner" src={require("../images/Banner.jpg")} alt="Conference Banner"/>
             <h3>Welcome to EVENT TITLE</h3>
             <div className="registration">
               <Button id="registrationbtn" onClick={this.handleRegClick}><span className="glyphicon glyphicon-check"></span></Button>

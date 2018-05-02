@@ -29,9 +29,8 @@ class App extends Component {
 
     this.userHasAuthenticated(false);
 
-    this.props.history.push(`/login/${localStorage.getItem("confIdKey")}`);
+    this.props.history.push(`/login/${sessionStorage.getItem("confIdKey")}`);
 
-    localStorage.clear();
   }
 
   async componentDidMount() {
@@ -39,7 +38,7 @@ class App extends Component {
       if (await authUser()) {
         this.userHasAuthenticated(true);
       }
-      localStorage.setItem("confIdKey", this.props.location.pathname.split("/")[2]);
+      sessionStorage.setItem("confIdKey", this.props.location.pathname.split("/")[2]);
     } catch(e) {
       alert(e);
     }
@@ -58,7 +57,7 @@ class App extends Component {
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <img id="logo" src="target_logo.png" alt="TARGET CONFERENCES LTD" />
+              <img id="logo" src={require("./images/target_logo.png")} alt="TARGET CONFERENCES LTD" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -66,10 +65,10 @@ class App extends Component {
             <Nav pullRight>
               {this.state.isAuthenticated
                 ? <NavItem id="logoutlink" onClick={this.handleLogout}>LOGOUT</NavItem>
-                : [<RouteNavItem id="loginlink" key={1} href={`/login/${localStorage.getItem("confIdKey")}`}>
+                : [<RouteNavItem id="loginlink" key={1} href={`/login/${sessionStorage.getItem("confIdKey")}`}>
                     LOGIN
                   </RouteNavItem>,
-                  <RouteNavItem id="signuplink" key={2} href={`/new_cat_reg/${localStorage.getItem("confIdKey")}`}>
+                  <RouteNavItem id="signuplink" key={2} href={`/new_cat_reg/${sessionStorage.getItem("confIdKey")}`}>
                     REGISTER
                   </RouteNavItem>]
               }
