@@ -48,12 +48,14 @@ export default class Login extends Component {
 
     try {
       const newUser = await this.login(this.state.email, this.state.password);
+      debugger;
       this.setState({
         newUser: newUser
       });
 
       try {
         const results = await this.participant();
+        debugger;
         this.setState({
           participant: results,
           participantId: results[0].participantId

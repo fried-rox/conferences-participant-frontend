@@ -41,7 +41,8 @@ export default class Dashboard extends Component {
       parPersonalCountry: "",
       parPersonalZIP: "",
       mobilePhoneNumber: "",
-      parNotes: ""
+      parNotes: "",
+      conferenceTitle: ""
     };
   }
 
@@ -50,7 +51,10 @@ export default class Dashboard extends Component {
       return;
     }
     try {
+      const confResults = await this.getConference();
+      debugger;
       const results = await this.getParticipants();
+      debugger;
       this.setState({
         participant: results,
         parTitle: results.parTitle,
@@ -73,7 +77,8 @@ export default class Dashboard extends Component {
         parPersonalCountry: results.parPersonalCountry,
         parPersonalZIP: results.parPersonalZIP,
         mobilePhoneNumber: results.mobilePhoneNumber,
-        parNotes: results.parNotes
+        parNotes: results.parNotes,
+        conferenceTitle: confResults.confTitle
       });
     } catch (e) {
       alert(e);
@@ -84,6 +89,10 @@ export default class Dashboard extends Component {
 
   getParticipants() {
     return invokeApig({ path: `/participants/${localStorage.getItem("parRegId")}` });
+  }
+
+  getConference() {
+    return invokeApig({ path: `/conferences/${localStorage.getItem("confIdKey")}` });
   }
 
   handleParticipantClick = event => {
@@ -176,7 +185,7 @@ export default class Dashboard extends Component {
 
           <div className="participation">
             <img id="banner" src={require("../images/Banner.jpg")} alt="Conference Banner"/>
-            <h3>Welcome to EVENT TITLE</h3>
+            <h3>Welcome to {this.state.conferenceTitle}</h3>
             <div className="registration">
               <Button id="registrationbtn" onClick={this.handleRegClick}><span className="glyphicon glyphicon-check"></span></Button>
               <HelpBlock id="reginfo">To register.</HelpBlock>

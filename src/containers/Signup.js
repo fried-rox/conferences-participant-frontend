@@ -27,6 +27,7 @@ export default class Signup extends Component {
         Name: "",
         Value: null
       },
+      conferenceId: "",
       participantId: "",
       parTitle: "",
       parFirstName: "",
@@ -60,11 +61,11 @@ export default class Signup extends Component {
 
   validateForm() {
     return (
+      this.state.parFirstName.length > 0 &&
+      this.state.parLastName.length > 0 &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
-      this.state.password === this.state.confirmPassword &&
-      this.state.parFirstName.length > 0 &&
-      this.state.parLastName.length > 0
+      this.state.password === this.state.confirmPassword
     );
   }
 
@@ -112,6 +113,7 @@ export default class Signup extends Component {
 
       try {
         const createParticipantObject = {
+          conferenceId: localStorage.getItem("confIdKey"),
           participantId: this.state.dataGoersId.Value,
           parTitle: this.state.parTitle === "" ? undefined : this.state.parTitle,
           parFirstName: this.state.parFirstName === "" ? undefined : this.state.parFirstName,
@@ -139,6 +141,7 @@ export default class Signup extends Component {
       } catch (e) {
         alert(e);
       }
+      debugger;
       localStorage.setItem("parRegId", this.state.dataGoersId.Value);
       this.props.history.push("/view_profile");
     } catch (e) {

@@ -35,6 +35,7 @@ export default class Registration extends Component {
   async componentDidMount() {
     try {
       const results = await this.getRegCategories();
+      debugger;
       this.setState({
         regcategories: results,
         regFullName: results.regFullName,
@@ -59,7 +60,7 @@ export default class Registration extends Component {
   }
 
   getRegCategories() {
-    return invokeApig({ path: `/regcategories/${localStorage.getItem('confIdKey2')}` })
+    return invokeApig({ path: `/regcategories` })
   }
 
   render() {
