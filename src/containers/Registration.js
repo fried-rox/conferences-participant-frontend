@@ -13,6 +13,7 @@ export default class Registration extends Component {
     this.state= {
       isLoading: false,
       regcategory: null,
+      regResult: "",
       // conferenceId: "",
       regFullName: "",
       regAbbrName: "",
@@ -35,6 +36,8 @@ export default class Registration extends Component {
   async componentDidMount() {
     try {
       const results = await this.getRegCategories();
+      const regResults = await results.map( (regResult) =>
+        regResult.conferenceId === localStorage.getItem("confIdKey") ? localStorage.setItem("regCategory", regResult.regCategoryId) : null);
       debugger;
       this.setState({
         regcategories: results,
@@ -52,7 +55,8 @@ export default class Registration extends Component {
         payCard: results.payCard,
         payGuard: results.payGuard,
         payEFT: results.payEFT,
-        regNotes: results.regNotes
+        regNotes: results.regNotes,
+        regCategoryId: regResults
       });
     } catch (e) {
       alert(e);

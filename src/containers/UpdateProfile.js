@@ -140,7 +140,7 @@ export default class UpdateProfile extends Component {
         <div className="UpdateProfile">
 
           <div className="idenification">
-            <span class="glyphicon glyphicon-user"></span>
+            <span className="glyphicon glyphicon-user"></span>
             <h1>{this.state.parTitle} {this.state.parFirstName} {this.state.parMiddleName} {this.state.parLastName}</h1>
           </div>
 
@@ -267,7 +267,7 @@ export default class UpdateProfile extends Component {
               </FormGroup>
               <Button
                 id="newaffiliation">
-                <span class="glyphicon glyphicon-plus"></span>
+                <span className="glyphicon glyphicon-plus"></span>
                   Add Affiliation
               </Button>
               <h2>Contact Details</h2>
