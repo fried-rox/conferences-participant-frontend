@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FormGroup, Checkbox } from "react-bootstrap";
+
 
 import Navigationbar from "./Navigationbar";
 
@@ -36,10 +38,13 @@ export default class Registration extends Component {
   async componentDidMount() {
     try {
       const results = await this.getRegCategories();
+      const resultsconf = await this.getConference();
       const regResults = await results.map( (regResult) =>
-        regResult.conferenceId === localStorage.getItem("confIdKey") ? localStorage.setItem("regCategory", regResult.regCategoryId) : null);
+        regResult.conferenceId === localStorage.getItem("confIdKey") ? localStorage.setItem("regCategoryId", regResult.regCategoryId) : null);
       debugger;
       this.setState({
+        conference: resultsconf,
+        conferenceTitle: resultsconf.confTitle,
         regcategories: results,
         regFullName: results.regFullName,
         regAbbrName: results.regAbbrName,
@@ -67,6 +72,10 @@ export default class Registration extends Component {
     return invokeApig({ path: `/regcategories` })
   }
 
+  getConference() {
+    return invokeApig({ path: `/conferences/${localStorage.getItem("confIdKey")}` })
+  }
+
   render() {
     return (
       <div className="registrationfullpage">
@@ -74,7 +83,11 @@ export default class Registration extends Component {
         <Navigationbar {...this.props}/>
 
         <div className="registration">
-          <h1>Registration Information</h1>
+          <h1>Registration for {this.state.conferenceTitle}</h1>
+          <h3>Please select the relevant registration category:</h3>
+          <FormGroup>
+            <Checkbox> {this.state.regFullName} </Checkbox>
+          </FormGroup>
         </div>
 
       </div>
