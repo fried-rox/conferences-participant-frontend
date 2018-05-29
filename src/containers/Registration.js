@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { FormGroup, Checkbox } from "react-bootstrap";
-
 
 import Navigationbar from "./Navigationbar";
 
@@ -39,29 +37,13 @@ export default class Registration extends Component {
     try {
       const results = await this.getRegCategories();
       const resultsconf = await this.getConference();
-      const regResults = await results.map( (regResult) =>
+      await results.map( (regResult) =>
         regResult.conferenceId === localStorage.getItem("confIdKey") ? localStorage.setItem("regCategoryId", regResult.regCategoryId) : null);
       debugger;
       this.setState({
         conference: resultsconf,
         conferenceTitle: resultsconf.confTitle,
-        regcategories: results,
-        regFullName: results.regFullName,
-        regAbbrName: results.regAbbrName,
-        regCurrency: results.regCurrency,
-        regLanguage: results.regLanguage,
-        addScience: results.addScience,
-        addTours: results.addTours,
-        addHotel: results.addHotel,
-        addAP: results.addAP,
-        regFee: results.regFee,
-        payCash: results.payCash,
-        payCheque: results.payCheque,
-        payCard: results.payCard,
-        payGuard: results.payGuard,
-        payEFT: results.payEFT,
-        regNotes: results.regNotes,
-        regCategoryId: regResults
+        regcategories: results
       });
     } catch (e) {
       alert(e);
@@ -85,9 +67,6 @@ export default class Registration extends Component {
         <div className="registration">
           <h1>Registration for {this.state.conferenceTitle}</h1>
           <h3>Please select the relevant registration category:</h3>
-          <FormGroup>
-            <Checkbox> {this.state.regFullName} </Checkbox>
-          </FormGroup>
         </div>
 
       </div>
