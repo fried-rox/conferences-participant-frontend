@@ -188,17 +188,17 @@ export default class Dashboard extends Component {
             <h3>Welcome to {this.state.conferenceTitle}</h3>
             <div className="registration">
               <Button id="registrationbtn" onClick={this.handleRegClick}><span className="glyphicon glyphicon-check"></span></Button>
-              <HelpBlock id="reginfo">To register.</HelpBlock>
+              <HelpBlock id="reginfo">Bookings</HelpBlock>
             </div>
 
             <div className="abstract">
               <Button id="abstractbtn" onClick={this.handleAbstractClick}><span className="glyphicon glyphicon-list-alt"></span></Button>
-              <HelpBlock id="subinfo">To submit abstracts.</HelpBlock>
+              <HelpBlock id="subinfo">Abstract Submission</HelpBlock>
             </div>
 
             <div className="review">
               <Button id="reviewbtn" onClick={this.handleReviewClick}><span className="glyphicon glyphicon-eye-open"></span></Button>
-              <HelpBlock id="revinfo">You are a scientific abstract reviewer for this event. Click here to review the abstracts that have been assigned to you.</HelpBlock>
+              <HelpBlock id="revinfo">You are a reviewer for this event. Click here to review what has been assigned to you.</HelpBlock>
             </div>
           </div>
 

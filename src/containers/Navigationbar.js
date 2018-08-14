@@ -31,9 +31,9 @@ export default class Navigationbar extends Component {
     return (
       <div className="navbarsecond">
         <RouteNavItem key={4} id="home" onClick={this.handleDetailsClick}>Home</RouteNavItem>
-        <RouteNavItem key={5} id="reg" onClick={this.handleRegistrationClick}>Registration</RouteNavItem>
-        <RouteNavItem key={6} id="absub" onClick={this.handleSubmissionClick}>Abstract Submission</RouteNavItem>
-        <RouteNavItem key={7} id="abrev" onClick={this.handleReviewClick}>Abstract Review</RouteNavItem>
+        <RouteNavItem key={5} id="reg" onClick={this.handleRegistrationClick}>Bookings</RouteNavItem>
+        <RouteNavItem key={6} id="absub" onClick={this.handleSubmissionClick}>Submission</RouteNavItem>
+        <RouteNavItem key={7} id="abrev" onClick={this.handleReviewClick}>Review</RouteNavItem>
       </div>
     );
   }
