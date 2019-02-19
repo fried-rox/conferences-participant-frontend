@@ -59,7 +59,7 @@ class App extends Component {
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <img id="logo" src={require("./images/target_logo.png")} alt="TARGET CONFERENCES LTD" />
+              <img id="logo" alt="Conference Company" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

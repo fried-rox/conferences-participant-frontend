@@ -1,5 +1,5 @@
 {
-  "name": "target-conferences-front",
+  "name": "conferences-participant-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,11 +23,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://participants-reg-app-uploads --delete",
+    "deploy": "aws s3 sync build/ s3://participants-app-uploads --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id EF902ON5P2I57 --paths /*",
     "eject": "react-scripts eject"
   },
-  "description": "Front end for Target Conference Goers",
+  "description": "Front end for Conference Participants",
   "main": "index.js",
   "author": "",
   "license": "ISC"

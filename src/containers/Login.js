@@ -134,9 +134,9 @@ export default class Login extends Component {
       <div className="LogIn">
 
         <div className="LogInMiddle">
-          <img id="banner" src={require("../images/Banner.jpg")} alt="Conference Banner"/>
+          <img id="banner" alt="Conference Banner"/>
           <h2>LOGIN</h2>
-          <p>*You may have previously attended an event organised by <img id="favicon_logo" src={require("../images/favicon.ico")} alt=""/><img id="logo" src={require("../images/target_logo_one.png")} alt="Target Conferences Ltd"/>.</p>
+          <p>*You may have previously attended an event organised by Conference Company>.</p>
           <p> To check please Login:</p>
           <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="email">

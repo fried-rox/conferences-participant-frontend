@@ -15,6 +15,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 registerServiceWorker();
-
-// The BrowserRouter - uses the browser's histroy API to create real URLs.
-// Router - is used here to render our App component - able to create routes needed inside the App component

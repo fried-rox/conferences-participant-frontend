@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import { Button, Table, HelpBlock } from "react-bootstrap";
-// import decode from "jwt-decode";
-// import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-// import Signup from "./Signup";
-// import Login from "./Login";
-//import Search from 'react-search'
 
 import { invokeApig } from '../libs/awsLib';
 import Login from "./Login";
@@ -12,7 +7,6 @@ import Navigationbar from "./Navigationbar";
 
 import "../css/Dashboard.css";
 
-//import SearchNotes from "../components/SearchNotes";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -184,7 +178,7 @@ export default class Dashboard extends Component {
           </div>
 
           <div className="participation">
-            <img id="banner" src={require("../images/Banner.jpg")} alt="Conference Banner"/>
+            <img id="banner" alt="Conference Banner"/>
             <h3>Welcome to {this.state.conferenceTitle}</h3>
             <div className="registration">
               <Button id="registrationbtn" onClick={this.handleRegClick}><span className="glyphicon glyphicon-check"></span></Button>
